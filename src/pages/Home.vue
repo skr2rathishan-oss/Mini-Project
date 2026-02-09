@@ -37,7 +37,8 @@ async function loadProducts() {
 const slides = ref<HeroSlide[]>([])
 const currentSlide = ref(0)
 
-const bgList = ['bg-[#f3f9fb]', 'bg-[#f9f9f9]', 'bg-[#f3f6ff]']
+const bgList = ['bg-teal-600']
+
 
 function toSlide(p: Product, index: number): HeroSlide {
   const discountBadge =
@@ -104,22 +105,36 @@ const onHeroClick = (productId: number) => {
 </script>
 
 <template>
-  <!-- HERO SLIDER -->
-  <section class="flex flex-col">
-    <HeroSlider
-      v-if="slides.length"
-      :slides="slides"
-      :currentSlide="currentSlide"
-      @dotClick="onDotClick"
-      @slideClick="onHeroClick"
-    />
-  </section>
+  <main class="space-y-10 md:space-y-16">
+    
+    <!-- ROW 1 — HERO SLIDER -->
+    <section>
+      <HeroSlider
+        v-if="slides.length"
+        :slides="slides"
+        :currentSlide="currentSlide"
+        @dotClick="onDotClick"
+        @slideClick="onHeroClick"
+      />
+    </section>
 
-  <!-- PRODUCTS GRID -->
-  <div class="container mx-auto px-4 py-8">
-    <div v-if="loading" class="text-gray-500">Loading...</div>
-    <div v-else-if="error" class="text-rose-600">{{ error }}</div>
+    <!-- ROW 2 — SECTION HEADER -->
+    <section class="container mx-auto px-4">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3">
+        <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
+          Trending <span class="text-[#00a8c1]">Products</span>
+        </h2>
+      </div>
+    </section>
 
-    <ProductGrid v-else :products="products" @productClick="openDetail" />
-  </div>
+    <!-- ROW 3 — PRODUCT GRID -->
+    <section class="container mx-auto px-4 pb-10">
+      <div v-if="loading" class="text-gray-500">Loading...</div>
+      <div v-else-if="error" class="text-rose-600">{{ error }}</div>
+
+      <ProductGrid v-else :products="products" @productClick="openDetail" />
+    </section>
+
+  </main>
 </template>
+

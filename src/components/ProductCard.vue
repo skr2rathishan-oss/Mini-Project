@@ -23,14 +23,14 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
            border border-gray-100 rounded-md overflow-hidden shadow-sm
            cursor-pointer
            transition-all duration-300 ease-out
-           hover:-translate-y-0.5 hover:shadow-md hover:border-[#00a8c1]/40
+           hover:-translate-y-0.5 hover:shadow-md hover:border-teal-600/40
            active:scale-[0.98]"
   >
     <!-- Discount Badge -->
     <div v-if="props.product.discountPercentage > 0" class="absolute top-0 right-0 z-10">
-      <div class="bg-[#dff6f8] text-[#00a8c1] text-[9px] font-bold px-1 py-0.5 relative">
+      <div class="bg-teal-50 text-teal-600 text-[9px] font-bold px-1 py-0.5 relative">
         <span class="relative z-10">-{{ Math.round(props.product.discountPercentage) }}%</span>
-        <div class="absolute -bottom-0.75 left-0 right-0 h-1 bg-[#dff6f8] clip-path-triangle"></div>
+        <div class="absolute -bottom-0.75 left-0 right-0 h-1 bg-teal-50 clip-path-triangle"></div>
       </div>
     </div>
 
@@ -45,7 +45,7 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
 
       <!-- Free Shipping -->
       <div class="absolute bottom-0 left-0 right-0 flex space-x-1 p-1">
-        <div class="bg-[#00a8c1] text-white text-[7px] px-1 py-0.5 rounded-sm font-bold uppercase">
+        <div class="bg-teal-600 text-white text-[7px] px-1 py-0.5 rounded-sm font-bold uppercase">
           Free
         </div>
       </div>
@@ -55,7 +55,7 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
     <div class="p-2 flex flex-col grow bg-white">
       <!-- Title -->
       <div class="mb-1 h-8 overflow-hidden">
-        <span class="inline-flex items-center bg-[#00a8c1] text-white text-[10px] px-1 rounded-sm mr-1 font-bold">
+        <span class="inline-flex items-center bg-teal-600 text-white text-[10px] px-1 rounded-sm mr-1 font-bold">
           Preferred
         </span>
 
@@ -66,7 +66,7 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
 
       <!-- Price -->
       <div class="mt-auto flex items-center justify-between">
-        <div class="flex items-baseline text-[#00a8c1]">
+        <div class="flex items-baseline text-teal-600">
           <span class="text-[12px] mr-0.5">LKR</span>
           <span class="text-sm font-bold">{{ priceLKR }}</span>
         </div>
@@ -80,7 +80,7 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
     <!-- Hover Border -->
     <div
       class="absolute inset-0 border border-transparent
-             group-hover:border-[#00a8c1] transition-colors
+             group-hover:border-teal-600 transition-colors
              pointer-events-none rounded-md"
     ></div>
   </button>
