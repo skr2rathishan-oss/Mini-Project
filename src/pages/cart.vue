@@ -1,0 +1,6 @@
+<template>
+	<section class="container mx-auto px-4 py-10">
+		<h1 class="text-3xl font-bold mb-2">Your Cart</h1>
+		<p class="text-gray-600">Cart page is connected. Add cart items here.</p>
+	</section>
+</template>
