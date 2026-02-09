@@ -1,5 +1,5 @@
 <template>
-  <div class="relative w-full h-[180px] sm:h-[260px] md:h-[520px] overflow-hidden group">
+  <div class="relative w-full h-45 sm:h-65 md:h-130 overflow-hidden group">
     <!-- Slides -->
     <div
       v-for="(slide, index) in slides"
