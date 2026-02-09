@@ -106,23 +106,18 @@ const onHeroClick = (productId: number) => {
 
 <template>
   <main class="space-y-10 md:space-y-16">
-    
+
     <!-- ROW 1 — HERO SLIDER -->
     <section>
-      <HeroSlider
-        v-if="slides.length"
-        :slides="slides"
-        :currentSlide="currentSlide"
-        @dotClick="onDotClick"
-        @slideClick="onHeroClick"
-      />
+      <HeroSlider v-if="slides.length" :slides="slides" :currentSlide="currentSlide" @dotClick="onDotClick"
+        @slideClick="onHeroClick" />
     </section>
 
     <!-- ROW 2 — SECTION HEADER -->
     <section class="container mx-auto px-4">
       <div class="flex items-center justify-between border-b border-gray-200 pb-3">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
-          Trending <span class="text-[#00a8c1]">Products</span>
+          Trending <span class="text-teal-500 font-semibold">Products</span>
         </h2>
       </div>
     </section>
@@ -137,4 +132,3 @@ const onHeroClick = (productId: number) => {
 
   </main>
 </template>
-
