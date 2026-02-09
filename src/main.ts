@@ -1,6 +1,14 @@
 import { createApp } from 'vue'
-import './style.css'
-import './assets/main.css'
+import { createPinia } from 'pinia'
 import App from './App.vue'
+import router from './router'
 
-createApp(App).mount('#app')
+// Tailwind / global CSS (keep only ONE main css entry)
+import './assets/main.css'
+
+const app = createApp(App)
+
+app.use(createPinia())  // ✅ Pinia global store
+app.use(router)         // ✅ Vue Router pages
+
+app.mount('#app')
