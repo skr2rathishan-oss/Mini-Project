@@ -1,36 +1,93 @@
 <script setup lang="ts">
 import type { Product } from '../types/product'
+import { computed } from 'vue'
 
-const props = defineProps<{
-  product: Product
-}>()
+const props = defineProps<{ product: Product }>()
+const emit = defineEmits<{ (e: 'click', product: Product): void }>()
 
-const emit = defineEmits<{
-  (e: 'click', product: Product): void
-}>()
+const LKR_RATE = 300
+
+const soldText = computed(() => {
+  const soldCount = Math.floor((props.product.rating * 1000) + (props.product.id * 50))
+  return soldCount > 1000 ? `${(soldCount / 1000).toFixed(1)}k+ sold` : `${soldCount} sold`
+})
+
+const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString())
 </script>
 
 <template>
   <button
     type="button"
-    class="text-left w-full border rounded-xl p-3 hover:shadow transition"
     @click="emit('click', props.product)"
+    class="group relative w-full text-left bg-white
+           border border-gray-100 rounded-md overflow-hidden shadow-sm
+           cursor-pointer
+           transition-all duration-300 ease-out
+           hover:-translate-y-0.5 hover:shadow-md hover:border-[#00a8c1]/40
+           active:scale-[0.98]"
   >
-    <img
-      :src="props.product.thumbnail"
-      :alt="props.product.title"
-      class="w-full h-32 object-cover rounded-lg"
-    />
+    <!-- Discount Badge -->
+    <div v-if="props.product.discountPercentage > 0" class="absolute top-0 right-0 z-10">
+      <div class="bg-[#dff6f8] text-[#00a8c1] text-[9px] font-bold px-1 py-0.5 relative">
+        <span class="relative z-10">-{{ Math.round(props.product.discountPercentage) }}%</span>
+        <div class="absolute -bottom-0.75 left-0 right-0 h-1 bg-[#dff6f8] clip-path-triangle"></div>
+      </div>
+    </div>
 
-    <p class="font-bold mt-2 text-sm line-clamp-1">
-      {{ props.product.title }}
-    </p>
-    <p class="text-[#00a8c1] font-black text-sm">
-      LKR {{ props.product.price }}
-    </p>
+    <!-- Image -->
+    <div class="aspect-square bg-white flex items-center justify-center overflow-hidden relative">
+      <img
+        :src="props.product.thumbnail"
+        :alt="props.product.title"
+        class="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
 
-    <p class="text-xs text-gray-500 mt-1 line-clamp-2">
-      {{ props.product.description }}
-    </p>
+      <!-- Free Shipping -->
+      <div class="absolute bottom-0 left-0 right-0 flex space-x-1 p-1">
+        <div class="bg-[#00a8c1] text-white text-[7px] px-1 py-0.5 rounded-sm font-bold uppercase">
+          Free
+        </div>
+      </div>
+    </div>
+
+    <!-- Info -->
+    <div class="p-2 flex flex-col grow bg-white">
+      <!-- Title -->
+      <div class="mb-1 h-8 overflow-hidden">
+        <span class="inline-flex items-center bg-[#00a8c1] text-white text-[10px] px-1 rounded-sm mr-1 font-bold">
+          Preferred
+        </span>
+
+        <h3 class="inline text-[12px] text-gray-800 line-clamp-2 leading-tight">
+          {{ props.product.title }}
+        </h3>
+      </div>
+
+      <!-- Price -->
+      <div class="mt-auto flex items-center justify-between">
+        <div class="flex items-baseline text-[#00a8c1]">
+          <span class="text-[12px] mr-0.5">LKR</span>
+          <span class="text-sm font-bold">{{ priceLKR }}</span>
+        </div>
+
+        <span class="text-[12px] text-gray-400">
+          {{ soldText }}
+        </span>
+      </div>
+    </div>
+
+    <!-- Hover Border -->
+    <div
+      class="absolute inset-0 border border-transparent
+             group-hover:border-[#00a8c1] transition-colors
+             pointer-events-none rounded-md"
+    ></div>
   </button>
 </template>
+
+<style scoped>
+.clip-path-triangle {
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+</style>
