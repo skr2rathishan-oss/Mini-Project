@@ -28,19 +28,28 @@ const onSearch = (q: string) => {
   }
 }
 
-const showFooter = computed(() => router.currentRoute.value.name !== 'Shop')
+const showFooter = computed(() => {
+  const currentRoute = router.currentRoute.value.name
+  return currentRoute !== 'Shop' && currentRoute !== 'auth'
+})
+
+const showNavbar = computed(() => {
+  const currentRoute = router.currentRoute.value.name
+  return currentRoute !== 'auth'
+})
 
 </script>
 
 <template>
   <Navbar
+    v-if="showNavbar"
     :cartCount="cartCount"
     @logoClick="onLogoClick"
     @cartClick="onCartClick"
     @search="onSearch"
   />
 
-  <main class="min-h-screen pt-20">
+  <main :class="showNavbar ? 'min-h-screen pt-20' : 'h-screen'">
     <router-view />
     <CartDrawer
       :items="cart.items"

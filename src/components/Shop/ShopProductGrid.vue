@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Product } from "../../types/product";
-import { computed } from 'vue';
 
 const props = defineProps<{ products: Product[] }>();
 defineEmits<{ (e: "productClick", p: Product): void }>();

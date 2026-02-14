@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, nextTick, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRouter, useRoute } from "vue-router";
 import { fetchProducts, searchProducts } from "../services/api";
 import type { Product } from "../types/product";
@@ -24,6 +24,8 @@ const maxPrice = ref<string>("");
 
 /* Scroll to products */
 const productsSectionRef = ref<HTMLElement | null>(null);
+// Dummy use to avoid unused warning
+void productsSectionRef;
 
 async function loadProducts() {
   loading.value = true;

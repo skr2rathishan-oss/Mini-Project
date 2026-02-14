@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, onUnmounted, ref, watch } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import { useUiStore } from "../../types/ui";
 import ThemeToggle from "./ThemeToggle.vue";
 import { useRouter } from "vue-router";
@@ -7,11 +7,6 @@ import { useRouter } from "vue-router";
 const ui = useUiStore();
 const router = useRouter();
 const menuRef = ref<HTMLElement | null>(null);
-
-// Debug: watch the state
-watch(() => ui.isProfileMenuOpen, (newVal) => {
-  console.log('isProfileMenuOpen changed to:', newVal);
-});
 
 function close() {
   ui.closeProfileMenu();
@@ -59,10 +54,10 @@ onUnmounted(() => {
 
       <div class="h-px bg-slate-100 my-2"></div>
 
-      <button class="menuItem" @click="go('/profile')">My Profile</button>
+      <button class="menuItem" @click="go('/auth')">My Profile</button>
       <button class="menuItem" @click="go('/orders')">Orders</button>
       <button class="menuItem" @click="go('/wishlist')">Wishlist</button>
-      <button class="menuItem" @click="go('/settings')">Settings</button>
+      <button class="menuItem" @click="go('/settings')">Settings</button> 
 
       <div class="h-px bg-slate-100 my-2"></div>
 
