@@ -4,11 +4,13 @@ import { useRoute, useRouter } from 'vue-router'
 
 import type { Product } from '../types/product'
 import { fetchProductById, fetchProducts } from '../services/api'
+import { useCartStore } from '../stores/cartStore'
 
 import ProductInfo from '../components/ProductInfo.vue'
 
 const route = useRoute()
 const router = useRouter()
+const cart = useCartStore()
 
 const loading = ref(true)
 const error = ref('')
@@ -29,10 +31,13 @@ const priceLKR = computed(() => {
 
 // 🔥 Replace these with your cart store later
 function onAddToCart(p: Product) {
-  console.log('Add to cart:', p, 'color:', selectedColor.value)
+  cart.add(p)
+  console.log('Added to cart:', p)
 }
 function onBuyNow(p: Product) {
-  console.log('Buy now:', p, 'color:', selectedColor.value)
+  cart.add(p)
+  router.push('/cart')  // Assuming there's a cart page
+  console.log('Buy now:', p)
 }
 function onWishlist() {
   console.log('Wishlist clicked')
