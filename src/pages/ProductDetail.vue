@@ -26,9 +26,6 @@ const priceLKR = computed(() => {
   return (product.value.price * LKR_RATE).toLocaleString()
 })
 
-function onBack() {
-  router.back()
-}
 
 // 🔥 Replace these with your cart store later
 function onAddToCart(p: Product) {
@@ -90,20 +87,6 @@ watch(
 <template>
   <div class="bg-white min-h-screen font-sans text-gray-900 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-6 py-10 md:py-12">
-      <!-- Top Bar -->
-      <div class="flex items-center justify-between mb-8">
-        <button
-          type="button"
-          class="text-xs font-black uppercase tracking-[0.2em] text-gray-500 hover:text-teal-600 transition-colors"
-          @click="onBack"
-        >
-          ← Back
-        </button>
-
-        <div class="text-xs font-bold text-gray-400">
-          Product Detail
-        </div>
-      </div>
 
       <!-- States -->
       <div v-if="loading" class="py-16 text-center text-sm text-gray-500">
@@ -115,11 +98,11 @@ watch(
       </div>
 
       <!-- Page -->
-      <div v-else-if="product" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12">
+      <div v-else-if="product" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-10">
         <!-- Left: Image -->
         <div class="lg:col-span-6">
           <div
-            class="bg-[#f9f9f9] aspect-square w-full flex items-center justify-center p-10 md:p-12 relative rounded-3xl"
+            class="bg-[#f9f9f9] aspect-square w-full flex items-center justify-center p-10 md:p-12 relative rounded-3xl h-130 border-2 border-teal-500"
           >
             <img
               :src="activeImage"
@@ -128,7 +111,7 @@ watch(
             />
 
             <!-- Price badge (optional) -->
-            <div class="absolute bottom-5 left-5 bg-white/90 backdrop-blur px-4 py-2 rounded-2xl border border-slate-100">
+            <div class="absolute bottom-5 left-5 bg-white/90 backdrop-blur px-4 py-2 rounded-2xl border border-teal-500">
               <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Price</p>
               <p class="text-sm font-black text-slate-900">LKR {{ priceLKR }}</p>
             </div>

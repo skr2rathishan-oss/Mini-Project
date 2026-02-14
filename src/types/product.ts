@@ -6,6 +6,7 @@ export interface Product {
   discountPercentage: number
   rating: number
   category: string
+  brand?: string
   thumbnail: string
   images: string[]
 }

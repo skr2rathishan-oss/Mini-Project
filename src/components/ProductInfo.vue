@@ -37,12 +37,8 @@ const filledStars = computed(() => Math.floor(props.product.rating ?? 0))
         {{ product.title }}
       </h1>
 
-      <button
-        type="button"
-        class="p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-colors"
-        @click="emit('wishlist')"
-        aria-label="Add to wishlist"
-      >
+      <button type="button" class="p-3 border border-slate-200 rounded-2xl hover:bg-slate-50 transition-colors"
+        @click="emit('wishlist')" aria-label="Add to wishlist">
         <i class="fa-regular fa-heart text-slate-400 text-[24px]" aria-hidden="true"></i>
       </button>
     </div>
@@ -50,19 +46,15 @@ const filledStars = computed(() => Math.floor(props.product.rating ?? 0))
     <!-- Rating -->
     <div class="flex items-center gap-4 mb-8">
       <div class="flex items-center gap-1">
-        <i
-          v-for="i in 5"
-          :key="i"
-          class="text-[18px]"
+        <i v-for="i in 5" :key="i" class="text-[18px]"
           :class="i <= filledStars ? 'fa-solid fa-star text-yellow-400' : 'fa-regular fa-star text-slate-300'"
-          aria-hidden="true"
-        ></i>
+          aria-hidden="true"></i>
       </div>
 
       <span class="text-sm font-bold text-slate-900">{{ product.rating }}</span>
       <span class="text-slate-300">/</span>
       <span class="text-sm font-semibold text-slate-400 tracking-tight">
-        {{ (product as any).reviews ?? 0 }} Reviews
+        {{ (product as any).reviews?.length ?? 0 }} Reviews <!-- Fix: Use .length to get the count -->
       </span>
     </div>
 
@@ -78,40 +70,27 @@ const filledStars = computed(() => Math.floor(props.product.rating ?? 0))
       </label>
 
       <div class="flex gap-4">
-        <button
-          v-for="color in (product as any).colors"
-          :key="color"
-          type="button"
+        <button v-for="color in (product as any).colors" :key="color" type="button"
           @click="emit('update:selectedColor', color)"
-          class="w-12 h-12 rounded-full border-4 transition-all flex items-center justify-center p-0.5"
-          :class="props.selectedColor === color
+          class="w-12 h-12 rounded-full border-4 transition-all flex items-center justify-center p-0.5" :class="props.selectedColor === color
             ? 'border-teal-500 scale-110 shadow-xl'
-            : 'border-transparent'"
-          :aria-label="`Select color ${color}`"
-        >
-          <div
-            class="w-full h-full rounded-full shadow-inner"
-            :style="{ backgroundColor: color }"
-          />
+            : 'border-transparent'" :aria-label="`Select color ${color}`">
+          <div class="w-full h-full rounded-full shadow-inner" :style="{ backgroundColor: color }"></div>
         </button>
       </div>
     </div>
 
     <!-- Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 mb-10">
-      <button
-        type="button"
+      <button type="button"
         class="flex-1 py-5 px-8 rounded-2xl border-2 border-slate-900 text-slate-900 font-bold hover:bg-slate-900 hover:text-white transition-all"
-        @click="emit('buy')"
-      >
+        @click="emit('buy')">
         BUY NOW
       </button>
 
-      <button
-        type="button"
+      <button type="button"
         class="flex-1 py-5 px-8 rounded-2xl bg-teal-600 text-white font-bold hover:bg-teal-700 transition-all shadow-xl shadow-teal-600/20 active:scale-95"
-        @click="emit('add')"
-      >
+        @click="emit('add')">
         ADD TO BASKET
       </button>
     </div>
