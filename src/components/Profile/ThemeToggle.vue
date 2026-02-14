@@ -11,7 +11,7 @@ const pressed = ref(false);
 function toggle() {
   pressed.value = true;
   ui.toggleTheme();
-  window.setTimeout(() => (pressed.value = false), 180);
+  window.setTimeout(() => (pressed.value = false), 150);
 }
 </script>
 
@@ -30,67 +30,32 @@ function toggle() {
       </span>
     </div>
 
-    <!-- Premium Switch -->
+    <!-- Switch -->
     <div
       class="relative w-12 h-7 rounded-full px-1 flex items-center
              transition-colors duration-300"
       :class="isDark ? 'bg-teal-500' : 'bg-slate-300'"
     >
-      <!-- Soft Glow -->
+      <!-- Glow -->
       <div
         class="absolute inset-0 rounded-full blur-md transition-opacity duration-300"
-        :class="isDark ? 'opacity-50 bg-teal-400' : 'opacity-0 bg-transparent'"
+        :class="isDark ? 'opacity-40 bg-teal-400' : 'opacity-0'"
       />
 
       <!-- Knob -->
       <div
-        class="relative z-10 w-6 h-6 rounded-full bg-white shadow-lg
-               flex items-center justify-center
-               transition-transform duration-500 will-change-transform"
+        class="relative z-10 w-5 h-5 rounded-full bg-white shadow-lg
+               transition-all duration-300 ease-in-out"
         :class="[
           isDark ? 'translate-x-5' : 'translate-x-0',
-          pressed ? 'scale-95' : 'scale-100',
-          isDark ? 'knob-spring-dark' : 'knob-spring-light'
+          pressed ? 'scale-95' : 'scale-100'
         ]"
       >
-        <!-- Icon morph -->
-        <span class="relative w-4 h-4 block">
-          <span
-            class="absolute inset-0 flex items-center justify-center transition-all duration-300"
-            :class="isDark ? 'opacity-0 scale-50 -rotate-90' : 'opacity-100 scale-100 rotate-0'"
-          >
-            ☀️
-          </span>
-
-          <span
-            class="absolute inset-0 flex items-center justify-center transition-all duration-300"
-            :class="isDark ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 rotate-90'"
-          >
-            🌙
-          </span>
-        </span>
       </div>
     </div>
   </button>
 </template>
 
 <style scoped>
-.knob-spring-light {
-  animation: springLeft 500ms cubic-bezier(0.2, 0.9, 0.2, 1);
-}
-.knob-spring-dark {
-  animation: springRight 500ms cubic-bezier(0.2, 0.9, 0.2, 1);
-}
-
-@keyframes springRight {
-  0%   { transform: translateX(0) scale(1); }
-  65%  { transform: translateX(22px) scale(1.08); }
-  100% { transform: translateX(20px) scale(1); }
-}
-
-@keyframes springLeft {
-  0%   { transform: translateX(20px) scale(1); }
-  65%  { transform: translateX(-2px) scale(1.08); }
-  100% { transform: translateX(0) scale(1); }
-}
+/* No spring animation needed — smooth sliding handled by transition */
 </style>
