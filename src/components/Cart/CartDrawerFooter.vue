@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
 defineProps<{
   selectedCount: number;
   subtotal: number;
@@ -6,6 +10,10 @@ defineProps<{
   total: number;
   formatMoney: (n: number) => string;
 }>();
+
+function handleCheckout() {
+  router.push('/checkout');
+}
 </script>
 
 <template>
@@ -46,6 +54,7 @@ defineProps<{
       :class="selectedCount > 0
         ? 'bg-teal-600 text-white hover:bg-teal-700 hover:shadow-lg active:scale-[0.98] cursor-pointer'
         : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
+      @click="handleCheckout"
     >
       <template v-if="selectedCount > 0">
         <i class="fa-solid fa-lock "></i>
