@@ -49,7 +49,7 @@ const hasCartItems = computed(() => props.cartCount > 0)
 
 <template>
   <!-- Desktop Header -->
-  <header class="border-b border-gray-200 bg-white h-20">
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white h-20">
     <div class="max-w-7xl mx-auto px-6">
       <div class="h-20 flex items-center justify-between">
         <!-- LEFT: Logo + Nav -->
