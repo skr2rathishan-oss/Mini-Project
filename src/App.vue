@@ -15,7 +15,20 @@ const cartCount = computed(() => cart.selectedItems.reduce((sum, item) => sum + 
 const onLogoClick = () => router.push('/')
 const onCartClick = () => ui.openCart()
 
-const onSearch = (q: string) => alert('Searching: ' + q)
+const onSearch = (q: string) => {
+  if (q.trim()) {
+    const currentRoute = router.currentRoute.value.name
+    if (currentRoute === 'Shop') {
+      // Stay on shop page but update search
+      router.push({ name: 'Shop', query: { q } })
+    } else {
+      // Go to home page with search
+      router.push({ name: 'home', query: { q } })
+    }
+  }
+}
+
+const showFooter = computed(() => router.currentRoute.value.name !== 'Shop')
 
 </script>
 
@@ -27,7 +40,7 @@ const onSearch = (q: string) => alert('Searching: ' + q)
     @search="onSearch"
   />
 
-  <main class="min-h-screen">
+  <main class="min-h-screen pt-20">
     <router-view />
     <CartDrawer
       :items="cart.items"
@@ -35,5 +48,5 @@ const onSearch = (q: string) => alert('Searching: ' + q)
     />
   </main>
 
-  <Footer />
+  <Footer v-if="showFooter" />
 </template>

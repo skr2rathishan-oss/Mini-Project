@@ -1,3 +1,4 @@
+import type { N } from 'vue-router/dist/index-Cu9B0wDz.mjs'
 import type { Product, ProductResponse } from '../types/product'
 
 const BASE = 'https://dummyjson.com'
@@ -24,11 +25,15 @@ export async function fetchFeaturedProducts(limit: number = 5): Promise<ProductR
 }
 // ...existing code...
 
-/* ---------------- Fetch all product categories ---------------- */
-export async function fetchCategories(): Promise<string[]> {
-  const res = await fetch(`${BASE}/products/categories`)
-  if (!res.ok) throw new Error('Failed to fetch categories')
-  return res.json()
+/* ---------------- Fetch first 5 product categories ---------------- */
+export async function fetchCategories(limit: number = 5): Promise<string[]> {
+  const res = await fetch(`${BASE}/products/categories`);
+
+  if (!res.ok) throw new Error("Failed to fetch categories");
+
+  const categories: string[] = await res.json();
+
+  return categories.slice(0, limit); // ✅ limit to first 5
 }
 
 // ...existing code...
