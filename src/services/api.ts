@@ -3,7 +3,7 @@ import type { Product, ProductResponse } from '../types/product'
 const BASE = 'https://dummyjson.com'
 
 /* ---------------- Fetch all products ---------------- */
-export async function fetchProducts(limit: number = 50): Promise<ProductResponse> {
+export async function fetchProducts(limit: number = 194): Promise<ProductResponse> {
   const res = await fetch(`${BASE}/products?limit=${limit}`)
   if (!res.ok) throw new Error('Failed to fetch products')
   return res.json()
@@ -22,6 +22,16 @@ export async function fetchFeaturedProducts(limit: number = 5): Promise<ProductR
   if (!res.ok) throw new Error('Failed to fetch featured products')
   return res.json()
 }
+// ...existing code...
+
+/* ---------------- Fetch all product categories ---------------- */
+export async function fetchCategories(): Promise<string[]> {
+  const res = await fetch(`${BASE}/products/categories`)
+  if (!res.ok) throw new Error('Failed to fetch categories')
+  return res.json()
+}
+
+// ...existing code...
 
 /* ---------------- Fetch single product by ID ---------------- */
 export async function fetchProductById(id: number): Promise<Product> {

@@ -1,15 +1,19 @@
+
 <template>
   <section class="relative overflow-hidden bg-white">
     <!-- Soft background gradient (desktop hero feel) -->
     <div class="absolute inset-0 bg-linear-to-r from-teal-50/60 to-transparent pointer-events-none"></div>
 
-    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 h-130">
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-24 h-155">
       <!-- Slides -->
       <div
         v-for="(slide, index) in slides"
         :key="slide.id"
-        class="absolute inset-0"
-        :class="index === currentSlide ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'"
+        class="absolute inset-0 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]"
+:class="
+  index === currentSlide
+    ? 'opacity-100 translate-x-0 scale-100 pointer-events-auto'
+    : 'opacity-0 translate-x-6 scale-[0.98] pointer-events-none'"
       >
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
           <!-- LEFT: Text -->
@@ -44,11 +48,11 @@
             <div class="flex items-center gap-4">
               <button
                 type="button"
-                @click="emit('slideClick', slide.productId)"
+                @click="goToShop"
                 class="group relative inline-flex items-center justify-center
                        bg-teal-600 text-white px-8 py-4 rounded-2xl
                        font-extrabold text-lg hover:bg-teal-700 transition-all
-                       shadow-xl hover:shadow-teal-500/20 overflow-hidden"
+                       shadow-xl hover:shadow-teal-500/20 overflow-hidden cursor-pointer"
               >
                 <span class="relative z-10">Shop Collection</span>
                 <i class="fa-solid fa-arrow-right ml-2 relative z-10 transition-transform group-hover:translate-x-1"></i>
@@ -62,7 +66,7 @@
                 type="button"
                 class="inline-flex items-center justify-center bg-white border-2 border-gray-100
                        text-gray-700 px-8 py-4 rounded-2xl font-extrabold text-lg
-                       hover:border-teal-100 hover:bg-teal-50/30 transition-all"
+                       hover:border-teal-100 hover:bg-teal-50/30 transition-all cursor-pointer"
               >
                 View Lookbook
               </button>
@@ -151,6 +155,14 @@
 </template>
 
 <script setup lang="ts">
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+
+function goToShop() {
+  router.push('/shop')
+}
+
 /* ---------------- TYPES ---------------- */
 export interface HeroSlide {
   id: number

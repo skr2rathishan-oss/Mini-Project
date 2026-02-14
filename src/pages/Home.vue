@@ -40,6 +40,8 @@ const currentSlide = ref(0)
 const bgList = ['bg-teal-600']
 
 
+const LKR_RATE = 300 
+
 function toSlide(p: Product, index: number): HeroSlide {
   const discountBadge =
     p.discountPercentage >= 15 ? `Save ${Math.round(p.discountPercentage)}%` : 'Featured'
@@ -48,12 +50,13 @@ function toSlide(p: Product, index: number): HeroSlide {
     id: p.id,
     badge: discountBadge,
     title: p.title,
-    price: `LKR ${p.price.toLocaleString()}`,
+    price: `LKR ${(p.price * LKR_RATE).toLocaleString()}`,  // Fix: Multiply by LKR_RATE for consistency
     image: p.images?.[0] || p.thumbnail,
     bgColor: bgList[index % bgList.length] || 'bg-[#f3f9fb]',
     productId: p.id
   }
 }
+
 
 async function loadHeroSlides() {
   try {

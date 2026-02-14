@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useUiStore } from './types/ui'
+import { useCartStore } from './types/cart'
 import Navbar from './components/Navbar.vue'
+import Footer from './components/Footer..vue'
+import CartDrawer from "./components/Cart/CartDrawer.vue";
 
 const router = useRouter()
-const cartCount = ref(0)
+const ui = useUiStore()
+const cart = useCartStore()
+const cartCount = cart.count
 
 const onLogoClick = () => router.push('/')
-const onCartClick = () => router.push('/cart')
+const onCartClick = () => ui.openCart()
 
 const onSearch = (q: string) => alert('Searching: ' + q)
 
@@ -23,5 +28,11 @@ const onSearch = (q: string) => alert('Searching: ' + q)
 
   <main class="min-h-screen">
     <router-view />
+    <CartDrawer
+      :items="cart.items"
+      :selectedItems="cart.selectedItems"
+    />
   </main>
+
+  <Footer />
 </template>

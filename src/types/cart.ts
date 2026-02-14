@@ -5,6 +5,7 @@ import type { Product } from '../types/product'
 export interface CartItem {
   product: Product
   quantity: number
+  selected: boolean
 }
 
 const STORAGE_KEY = 'shopnet_cart_v1'
@@ -33,10 +34,12 @@ export const useCartStore = defineStore('cart', () => {
     items.value.reduce((sum, i) => sum + i.product.price * i.quantity, 0)
   )
 
+  const selectedItems = computed(() => items.value.filter(i => i.selected))
+
   function add(product: Product, qty = 1) {
     const found = items.value.find((i) => i.product.id === product.id)
     if (found) found.quantity += qty
-    else items.value.push({ product, quantity: qty })
+    else items.value.push({ product, quantity: qty, selected: true })
   }
 
   function remove(productId: number) {
@@ -63,5 +66,23 @@ export const useCartStore = defineStore('cart', () => {
     if (found) found.quantity = Math.max(1, found.quantity - 1)
   }
 
-  return { items, count, subtotal, add, remove, clear, setQuantity, inc, dec }
+  function toggleSelection(productId: number) {
+    const found = items.value.find((i) => i.product.id === productId)
+    if (found) found.selected = !found.selected
+  }
+
+  function toggleAll(selected: boolean) {
+    items.value.forEach(i => i.selected = selected)
+  }
+
+  function updateQuantity(productId: number, delta: number) {
+    const found = items.value.find((i) => i.product.id === productId)
+    if (found) found.quantity = Math.max(1, found.quantity + delta)
+  }
+
+  function removeItem(productId: number) {
+    remove(productId)
+  }
+
+  return { items, count, subtotal, selectedItems, add, remove, clear, setQuantity, inc, dec, toggleSelection, toggleAll, updateQuantity, removeItem }
 })

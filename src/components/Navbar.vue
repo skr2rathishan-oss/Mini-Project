@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import SearchBar from './SearchBar.vue'
+import SigninModal from './SigninModal.vue';
+import { useUiStore } from "../types/ui";
+const ui = useUiStore();
 
 const props = defineProps<{
   cartCount: number
@@ -17,10 +20,29 @@ const emit = defineEmits<{
 
 const navLinks = [
   { label: 'Home', to: '/' },
-  { label: 'Categories', to: '/categories' },
+  { label: 'Shop', to: '/Shop' },
   { label: 'Deals', to: '/deals' },
   { label: 'Contact', to: '/contact' }
 ] as const
+
+const isSignInOpen = ref(false)
+
+const openSignIn = () => {
+  isSignInOpen.value = true
+  emit('profileClick')
+}
+
+const handleSignIn = () => {
+  isSignInOpen.value = false
+}
+
+const goSignUp = () => {
+  // Navigate to sign up
+}
+
+const goForgot = () => {
+  // Navigate to forgot password
+}
 
 const hasCartItems = computed(() => props.cartCount > 0)
 </script>
@@ -33,14 +55,9 @@ const hasCartItems = computed(() => props.cartCount > 0)
         <!-- LEFT: Logo + Nav -->
         <div class="flex items-center gap-12">
           <!-- Logo -->
-          <button
-            class="flex items-center gap-2 group"
-            @click="emit('logoClick')"
-          >
-            <span
-              class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center
-                     shadow-lg transition-transform duration-300 group-hover:rotate-12"
-            >
+          <button class="flex items-center gap-2 group" @click="emit('logoClick')">
+            <span class="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center
+                     shadow-lg transition-transform duration-300 group-hover:rotate-12">
               <i class="fa-solid fa-bag-shopping text-white text-lg"></i>
             </span>
 
@@ -51,13 +68,8 @@ const hasCartItems = computed(() => props.cartCount > 0)
 
           <!-- Nav Links -->
           <nav class="flex items-center gap-8">
-            <RouterLink
-              v-for="l in navLinks"
-              :key="l.label"
-              :to="l.to"
-              class="text-[13px] font-semibold tracking-wide text-gray-600
-                     hover:text-teal-600 transition-colors"
-            >
+            <RouterLink v-for="l in navLinks" :key="l.label" :to="l.to" class="text-[13px] font-semibold tracking-wide text-gray-600
+                     hover:text-teal-600 transition-colors">
               {{ l.label }}
             </RouterLink>
           </nav>
@@ -72,40 +84,35 @@ const hasCartItems = computed(() => props.cartCount > 0)
           </div>
 
           <!-- Profile -->
-          <button
-            class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
-                   hover:bg-teal-50 hover:text-teal-600 transition pointer-cursor"
-            @click="emit('profileClick')"
-            title="Profile"
-          >
+          <button class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+                   hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer" @click="openSignIn"
+            title="Profile">
             <i class="fa-regular fa-user text-lg"></i>
           </button>
 
+          <SigninModal
+            :is-open="isSignInOpen"
+            @close="isSignInOpen = false"
+            @signIn="handleSignIn"
+            @navigateToSignUp="goSignUp"
+            @navigateToForgot="goForgot"
+          />
+
           <!-- Wishlist -->
-          <button
-            class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
-                   hover:bg-red-50 hover:text-red-500 transition"
-            @click="emit('wishlistClick')"
-            title="Wishlist"
-          >
+          <button class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+                   hover:bg-red-50 hover:text-red-500 transition cursor-pointer" @click="emit('wishlistClick')" title="Wishlist">
             <i class="fa-regular fa-heart text-lg"></i>
             <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
           </button>
 
           <!-- Cart -->
-          <button
-            class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
-                   hover:bg-teal-50 hover:text-teal-600 transition"
-            @click="emit('cartClick')"
-            title="Cart"
-          >
+          <button class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+                   hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer" @click="ui.openCart()" title="Cart">
             <i class="fa-solid fa-bag-shopping text-lg"></i>
 
-            <span
-              class="absolute -top-1 -right-1 bg-teal-600 text-white text-[10px] font-bold
+            <span class="absolute -top-1 -right-1 bg-teal-600 text-white text-[10px] font-bold
                      w-5 h-5 rounded-full flex items-center justify-center shadow"
-              :class="hasCartItems ? 'opacity-100' : 'opacity-60'"
-            >
+              :class="hasCartItems ? 'opacity-100' : 'opacity-60'">
               {{ props.cartCount }}
             </span>
           </button>
