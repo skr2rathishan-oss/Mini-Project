@@ -12,12 +12,12 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 ml-25 mr-25">
+  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 ml-25 mr-25 pt-10">
     <ProductCard
       v-for="p in products"
       :key="p.id"
       :product="p"
-      @click="emit('productClick', $event)"
+      @click="emit('productClick', p)"
     />
   </div>
 </template>

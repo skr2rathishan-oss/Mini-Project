@@ -44,11 +44,11 @@ defineProps<{
       :disabled="selectedCount === 0"
       class="w-full py-4 rounded-xl flex items-center justify-center gap-2 font-bold transition-all duration-300"
       :class="selectedCount > 0
-        ? 'bg-black text-white hover:bg-gray-900 hover:shadow-lg active:scale-[0.98]'
+        ? 'bg-teal-600 text-white hover:bg-teal-700 hover:shadow-lg active:scale-[0.98] cursor-pointer'
         : 'bg-gray-200 text-gray-400 cursor-not-allowed'"
     >
       <template v-if="selectedCount > 0">
-        <i class="fa-solid fa-lock"></i>
+        <i class="fa-solid fa-lock "></i>
         Secure Checkout
       </template>
       <template v-else>

@@ -117,7 +117,7 @@ const onHeroClick = (productId: number) => {
     </section>
 
     <!-- ROW 2 — SECTION HEADER -->
-    <section class="container mx-auto px-4">
+    <section class="container mx-auto px-4 mb-0">
       <div class="flex items-center justify-between border-b border-gray-200 pb-3">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
           Trending <span class="text-teal-500 font-semibold">Products</span>
@@ -126,7 +126,7 @@ const onHeroClick = (productId: number) => {
     </section>
 
     <!-- ROW 3 — PRODUCT GRID -->
-    <section class="container mx-auto px-4 pb-10">
+    <section class="container mx-auto px-4 pb-10 pt-0 mt-0">
       <div v-if="loading" class="text-gray-500">Loading...</div>
       <div v-else-if="error" class="text-rose-600">{{ error }}</div>
 

@@ -1,9 +1,12 @@
 <script setup lang="ts">
 import type { Product } from '../types/product'
 import { computed } from 'vue'
+import { useCartStore } from '../stores/cartStore'
 
 const props = defineProps<{ product: Product }>()
 const emit = defineEmits<{ (e: 'click', product: Product): void }>()
+
+const cart = useCartStore()
 
 const LKR_RATE = 300
 
@@ -13,6 +16,10 @@ const soldText = computed(() => {
 })
 
 const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString())
+
+function addToCart() {
+  cart.add(props.product)
+}
 </script>
 
 <template>
@@ -75,13 +82,21 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
           {{ soldText }}
         </span>
       </div>
+
+      <!-- Add to Cart Button -->
+      <button
+        @click.stop="addToCart()"
+        class="mt-2 w-full bg-teal-600 text-white text-xs py-1 rounded hover:bg-teal-700 transition cursor-pointer font-bold flex items-center justify-center gap-1"
+      >
+        Add to Cart
+      </button>
     </div>
 
     <!-- Hover Border -->
     <div
       class="absolute inset-0 border border-transparent
              group-hover:border-teal-600 transition-colors
-             pointer-events-none rounded-md"
+             pointer-events-none rounded-md cursor-pointer"
     ></div>
   </button>
 </template>

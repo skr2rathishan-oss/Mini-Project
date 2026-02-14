@@ -9,7 +9,7 @@ const router = createRouter({
         { path: '/', name: 'home', component: Home },
         { path: '/cart', name: 'cart', component: Cart },
         { path: '/product/:id', name: 'productDetail', component: ProductDetail },
-        { path: '/Shop', name: 'categories', component: Shop}
+        { path: '/Shop', name: 'Shop', component: Shop}
     ]
 })
 

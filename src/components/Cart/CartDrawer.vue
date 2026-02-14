@@ -10,6 +10,8 @@ import CartDrawerFooter from "./CartDrawerFooter.vue";
 const ui = useUiStore();
 const cart = useCartStore();
 
+const LKR_RATE = 300;
+
 /** UI state */
 const isOpen = computed(() => ui.isCartOpen);
 
@@ -17,17 +19,18 @@ const isOpen = computed(() => ui.isCartOpen);
 const items = computed(() => cart.items);
 const selectedItems = computed(() => cart.selectedItems);
 const subtotal = computed(() => cart.subtotal);
+const subtotalLKR = computed(() => subtotal.value * LKR_RATE);
 
 /** Shipping + totals */
-const shippingThreshold = 200;
+const shippingThreshold = 200 * LKR_RATE;
 
 const progress = computed(() => {
-  const p = (subtotal.value / shippingThreshold) * 100;
+  const p = (subtotalLKR.value / shippingThreshold) * 100;
   return Math.min(100, Math.max(0, p));
 });
 
 const remainingForFreeShipping = computed(() =>
-  Math.max(0, shippingThreshold - subtotal.value)
+  Math.max(0, shippingThreshold - subtotalLKR.value)
 );
 
 const shippingFee = computed(() => (progress.value >= 100 ? 0 : 15));
@@ -57,7 +60,7 @@ onUnmounted(() => {
 });
 
 function formatMoney(n: number) {
-  return `$${n.toFixed(2)}`;
+  return `LKR ${(n * LKR_RATE).toLocaleString()}`;
 }
 </script>
 
