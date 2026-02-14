@@ -30,7 +30,7 @@ const onSearch = (q: string) => {
 
 const showFooter = computed(() => {
   const currentRoute = router.currentRoute.value.name
-  return currentRoute !== 'Shop' && currentRoute !== 'auth'
+  return currentRoute !== 'Shop' && currentRoute !== 'auth' && currentRoute !== 'checkout'
 })
 
 const showNavbar = computed(() => {

@@ -5,12 +5,14 @@ import { useRoute, useRouter } from 'vue-router'
 import type { Product } from '../types/product'
 import { fetchProductById, fetchProducts } from '../services/api'
 import { useCartStore } from '../stores/cartStore'
+import { useCheckoutStore } from '../stores/checkout'
 
 import ProductInfo from '../components/ProductInfo.vue'
 
 const route = useRoute()
 const router = useRouter()
 const cart = useCartStore()
+const checkout = useCheckoutStore()
 
 const loading = ref(true)
 const error = ref('')
@@ -35,9 +37,19 @@ function onAddToCart(p: Product) {
   console.log('Added to cart:', p)
 }
 function onBuyNow(p: Product) {
-  cart.add(p)
-  router.push('/cart')  // Assuming there's a cart page
-  console.log('Buy now:', p)
+  // Build Buy Now item from product
+  const buyNowItem = {
+    id: p.id,
+    name: p.title,
+    price: p.price * LKR_RATE, // Convert to LKR
+    quantity: 1,
+    image: p.thumbnail || p.images?.[0] || ''
+  }
+  
+  // Set checkout store with Buy Now mode
+  checkout.setBuyNowItem(buyNowItem)
+  router.push('/checkout')
+  console.log('Buy now:', buyNowItem)
 }
 function onWishlist() {
   console.log('Wishlist clicked')

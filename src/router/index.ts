@@ -12,6 +12,8 @@ const AuthPage = () => import("../pages/AuthPage.vue");
 // Cart (drawer body can stay as component)
 import Cart from "../pages/Cart.vue";
 
+import CheckoutPage from "../pages/CheckoutPage.vue";
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -22,6 +24,8 @@ const router = createRouter({
     { path: "/product/:id", name: "productDetail", component: ProductDetail },
 
     { path: "/cart", name: "cart", component: Cart },
+
+    { path: "/checkout", name: "checkout", component: CheckoutPage },
 
     // 🔐 Auth page (Sign in / Register / Forgot)
     { path: "/auth", name: "auth", component: AuthPage },
