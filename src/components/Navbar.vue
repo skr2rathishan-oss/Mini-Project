@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import SearchBar from './SearchBar.vue'
-import SigninModal from './SigninModal.vue';
+import Profile from './Profile/DropDown.vue'
 import { useUiStore } from "../types/ui";
 const ui = useUiStore();
 
@@ -21,30 +21,15 @@ const emit = defineEmits<{
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Shop', to: '/Shop' },
-  { label: 'Deals', to: '/deals' },
-  { label: 'Contact', to: '/contact' }
+  { label: 'Deals', to: '/Deals' },
+  { label: 'Contact', to: '/Contact' }  
 ] as const
 
-const isSignInOpen = ref(false)
-
-const openSignIn = () => {
-  isSignInOpen.value = true
-  emit('profileClick')
-}
-
-const handleSignIn = () => {
-  isSignInOpen.value = false
-}
-
-const goSignUp = () => {
-  // Navigate to sign up
-}
-
-const goForgot = () => {
-  // Navigate to forgot password
-}
-
 const hasCartItems = computed(() => props.cartCount > 0)
+
+const openProfileMenu = () => {
+  ui.openProfileMenu()
+}
 </script>
 
 <template>
@@ -103,21 +88,18 @@ const hasCartItems = computed(() => props.cartCount > 0)
               {{ props.cartCount }}
             </span>
           </button>
-           <!-- Profile -->
-          <button class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
-                   hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer" @click="openSignIn"
-            title="Profile">
-            <i class="fa-regular fa-user text-lg"></i>
-          </button>
-    
-
-          <SigninModal
-            :is-open="isSignInOpen"
-            @close="isSignInOpen = false"
-            @signIn="handleSignIn"
-            @navigateToSignUp="goSignUp"
-            @navigateToForgot="goForgot"
-          />
+          <!-- Profile -->
+          <div class="relative">
+            <button
+              @click="openProfileMenu"
+              class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+                     hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer"
+              title="Profile"
+            >
+              <i class="fa-regular fa-user text-lg"></i>
+            </button>
+            <Profile />
+          </div>
 
         </div>
      

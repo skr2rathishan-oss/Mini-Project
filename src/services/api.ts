@@ -1,4 +1,3 @@
-import type { N } from 'vue-router/dist/index-Cu9B0wDz.mjs'
 import type { Product, ProductResponse } from '../types/product'
 
 const BASE = 'https://dummyjson.com'

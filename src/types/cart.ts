@@ -36,6 +36,14 @@ export const useCartStore = defineStore('cart', () => {
 
   const selectedItems = computed(() => items.value.filter(i => i.selected))
 
+  const FREE_SHIPPING_THRESHOLD = 50
+  const progress = computed(() => Math.min(100, (subtotal.value / FREE_SHIPPING_THRESHOLD) * 100))
+  const remainingForFreeShipping = computed(() => Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal.value))
+
+  function formatMoney(n: number) {
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n)
+  }
+
   function add(product: Product, qty = 1) {
     const found = items.value.find((i) => i.product.id === product.id)
     if (found) found.quantity += qty
@@ -84,5 +92,5 @@ export const useCartStore = defineStore('cart', () => {
     remove(productId)
   }
 
-  return { items, count, subtotal, selectedItems, add, remove, clear, setQuantity, inc, dec, toggleSelection, toggleAll, updateQuantity, removeItem }
+  return { items, count, subtotal, selectedItems, progress, remainingForFreeShipping, formatMoney, add, remove, clear, setQuantity, inc, dec, toggleSelection, toggleAll, updateQuantity, removeItem }
 })
