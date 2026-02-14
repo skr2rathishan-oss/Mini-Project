@@ -28,9 +28,7 @@ const navLinks = [
 const hasCartItems = computed(() => props.cartCount > 0)
 
 const openProfileMenu = () => {
-  console.log('openProfileMenu called, current state:', ui.isProfileMenuOpen);
-  ui.openProfileMenu();
-  console.log('after openProfileMenu, state:', ui.isProfileMenuOpen);
+  ui.openProfileMenu()
 }
 </script>
 
