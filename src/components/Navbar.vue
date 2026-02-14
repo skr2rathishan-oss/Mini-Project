@@ -83,20 +83,7 @@ const hasCartItems = computed(() => props.cartCount > 0)
             <SearchBar @search="emit('search', $event)" />
           </div>
 
-          <!-- Profile -->
-          <button class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
-                   hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer" @click="openSignIn"
-            title="Profile">
-            <i class="fa-regular fa-user text-lg"></i>
-          </button>
-
-          <SigninModal
-            :is-open="isSignInOpen"
-            @close="isSignInOpen = false"
-            @signIn="handleSignIn"
-            @navigateToSignUp="goSignUp"
-            @navigateToForgot="goForgot"
-          />
+         
 
           <!-- Wishlist -->
           <button class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
@@ -116,8 +103,24 @@ const hasCartItems = computed(() => props.cartCount > 0)
               {{ props.cartCount }}
             </span>
           </button>
+           <!-- Profile -->
+          <button class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+                   hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer" @click="openSignIn"
+            title="Profile">
+            <i class="fa-regular fa-user text-lg"></i>
+          </button>
+    
+
+          <SigninModal
+            :is-open="isSignInOpen"
+            @close="isSignInOpen = false"
+            @signIn="handleSignIn"
+            @navigateToSignUp="goSignUp"
+            @navigateToForgot="goForgot"
+          />
 
         </div>
+     
       </div>
     </div>
   </header>
