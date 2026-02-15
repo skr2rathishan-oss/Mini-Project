@@ -174,7 +174,7 @@ const filterByBrand = (brand: string) => {
     </section>
 
     <!-- ROW 2 — CATEGORIES -->
-    <section class="container mx-auto px-4">
+    <section class="hidden md:block container mx-auto px-4">
       <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
           Shop by <span class="text-teal-500 font-semibold">Category</span>
@@ -198,7 +198,7 @@ const filterByBrand = (brand: string) => {
 
     <!-- ROW 3 — TRENDING PRODUCTS -->
     <section class="container mx-auto px-4">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-3">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
           Trending <span class="text-teal-500 font-semibold">Products</span>
         </h2>
