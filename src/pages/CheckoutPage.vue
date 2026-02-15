@@ -47,21 +47,23 @@ watch(() => cart.selectedItems, (newItems) => {
   />
 
   <!-- Shipping/Payment -->
-  <div v-else class="h-screen w-full flex flex-col bg-white overflow-hidden gap-0.5">
+  <div v-else class="min-h-screen w-full flex flex-col bg-white">
     <CheckoutHeader @cancel="onBack" />
 
-    <div class="grow flex flex-row overflow-hidden">
+    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
       <!-- Left -->
-      <div class="grow custom-scrollbar px-12 lg:px-16">
+      <div class="flex-1 overflow-y-auto custom-scrollbar px-4 lg:px-16 py-6 lg:py-10 lg:min-w-0">
         <div class="max-w-2xl mx-auto">
           <CheckoutShipping v-if="checkout.step === 'shipping'" />
           <CheckoutPayment v-else />
         </div>
       </div>
 
-      <div class="w-full max-w-sm lg:max-w-md flex flex-row mr-20">
-        <!-- Order Summary -->
-        <OrderSummary class="flex-1 mt-15 mr-1.5 ml-0.5" />
+      <!-- Order Summary - Below on mobile, Right side on desktop -->
+      <div class="w-full lg:w-auto lg:flex-none px-4 lg:px-0 py-6 lg:py-10 lg:mr-8 border-t lg:border-t-0 lg:border-l border-slate-200">
+        <div class="max-w-sm mx-auto lg:max-w-md">
+          <OrderSummary />
+        </div>
       </div>
     </div>
   </div>

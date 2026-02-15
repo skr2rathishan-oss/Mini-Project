@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
 
-type TabId = "home" | "order" | "message" | "cart" | "profile";
+type TabId = "home" | "shop" | "message" | "cart" | "profile";
 
 type Tab = {
   id: TabId;
@@ -16,8 +16,8 @@ const router = useRouter();
 
 const tabs: Tab[] = [
   { id: "home", iconClass: "fa-house", label: "Home", path: "/" },
-  { id: "order", iconClass: "fa-box", label: "Order", path: "/orders" },
-  { id: "message", iconClass: "fa-message", label: "Massage", path: "/messages" }, // keep typo as you had
+  { id: "shop", iconClass: "fa-box", label: "Shop", path: "/shop" },
+  { id: "message", iconClass: "fa-message", label: "Messages", path: "/messages" }, // keep typo as you had
   { id: "cart", iconClass: "fa-basket-shopping", label: "Cart", path: "/cart" },
   { id: "profile", iconClass: "fa-user", label: "Profile", path: "/profile" },
 ];

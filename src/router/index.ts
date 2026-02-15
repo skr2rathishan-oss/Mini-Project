@@ -4,10 +4,11 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
 import Shop from "../pages/Shop.vue";
 import ProductDetail from "../pages/ProductDetail.vue";
-import MobiledetailPage from "../pages/MobiledetailPage.vue";
+import MobiledetailPage from "../pages/MobileProductDetail.vue";
 
 // Auth & profile pages
 const AuthPage = () => import("../pages/AuthPage.vue");
+const MobileProfile = () => import("../pages/MobileProfile.vue");
 
 
 // Cart (drawer body can stay as component)
@@ -32,6 +33,9 @@ const router = createRouter({
 
     // 🔐 Auth page (Sign in / Register / Forgot)
     { path: "/auth", name: "auth", component: AuthPage },
+
+    // 👤 Profile page (mobile)
+    { path: "/profile", name: "profile", component: MobileProfile },
 
    
   ],

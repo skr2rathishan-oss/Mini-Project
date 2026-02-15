@@ -7,7 +7,7 @@ defineEmits<{ (e: "productClick", p: Product): void; (e: "addToCart", p: Product
 </script>
 
 <template>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-x-4 gap-y-8">
+  <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-2 sm:gap-3 lg:gap-x-4 lg:gap-y-8">
     <PremiumProductCard
       v-for="p in products"
       :key="p.id"

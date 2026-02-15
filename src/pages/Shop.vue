@@ -8,6 +8,7 @@ import { getProductDetailView } from "../utils/deviceDetect";
 
 import ShopSidebar from "../components/Shop/ShopSidebar.vue";
 import PremiumProductGrid from "../components/Shop/PremiumProductGrid.vue";
+import ShopFilter from "../components/MobileDesign/ShopFilter.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -109,8 +110,8 @@ function onAddToCart(product: Product) {
 
 <template>
   <div class="min-h-screen bg-white mt-0">
-    <main class="max-w-[1440px] mx-auto px-6 pb-12 pt-0 mt-0">
-      <div class="flex flex-col lg:flex-row gap-16 pt-8">
+    <main class="max-w-[1440px] mx-auto px-3 lg:px-6 pb-12 pt-0 mt-0">
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 pt-4 lg:pt-8">
         <!-- Fixed Sidebar (desktop) -->
         <div class="hidden lg:block fixed top-20 left-6 w-72 h-fit z-40 mt-4">
           <ShopSidebar
@@ -134,6 +135,23 @@ function onAddToCart(product: Product) {
 
         <!-- Main Content -->
         <div class="flex-1 min-w-0 lg:ml-80">
+          <!-- Mobile Filter Button -->
+          <div class="mb-2">
+            <ShopFilter
+              :categories="categories"
+              :brands="brands"
+              :selectedCategory="selectedCategory"
+              :selectedBrand="selectedBrand"
+              :minPrice="minPrice"
+              :maxPrice="maxPrice"
+              :resultCount="filteredProducts.length"
+              @update:selectedCategory="(v) => (selectedCategory = v)"
+              @update:selectedBrand="(v) => (selectedBrand = v)"
+              @update:minPrice="(v) => (minPrice = v)"
+              @update:maxPrice="(v) => (maxPrice = v)"
+              @clear="clearFilters"
+            />
+          </div>
 
           <!-- Products (scroll target) -->
           <section ref="productsSectionRef" class="scroll-mt-24">

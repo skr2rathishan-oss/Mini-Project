@@ -30,21 +30,21 @@ function onNext() {
 <template>
   <div class="animate-in slide-in-from-left-4 duration-500 flex flex-col">
     <!-- Header -->
-    <div class="flex items-center gap-3 mb-6">
-      <div class="w-8 h-8 bg-teal-50 rounded-lg flex items-center justify-center text-teal-600">
+    <div class="flex items-center gap-2 lg:gap-3 mb-4 lg:mb-6">
+      <div class="w-7 lg:w-8 h-7 lg:h-8 bg-teal-50 rounded-lg flex items-center justify-center text-teal-600 text-sm lg:text-base">
         <i class="fa-solid fa-truck"></i>
       </div>
-      <h2 class="text-xl font-bold text-slate-800 tracking-tight">Shipping Information</h2>
+      <h2 class="text-lg lg:text-xl font-bold text-slate-800 tracking-tight">Shipping Information</h2>
     </div>
 
     <!-- Inputs -->
-    <div class="grid grid-cols-2 gap-x-4 gap-y-3 mb-6">
+    <div class="grid grid-cols-2 gap-x-3 lg:gap-x-4 gap-y-2 lg:gap-y-3 mb-6">
       <div class="col-span-2">
         <input
           type="text"
           v-model="checkout.address.fullName"
           placeholder="Recipient Full Name"
-          class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-sm font-medium"
+          class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-xs lg:text-sm font-medium"
         />
       </div>
 
@@ -53,7 +53,7 @@ function onNext() {
           type="text"
           v-model="checkout.address.street"
           placeholder="Address (Street, House No.)"
-          class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-sm font-medium"
+          class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-xs lg:text-sm font-medium"
         />
       </div>
 
@@ -62,7 +62,7 @@ function onNext() {
           type="text"
           v-model="checkout.address.city"
           placeholder="City"
-          class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-sm font-medium"
+          class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-xs lg:text-sm font-medium"
         />
       </div>
 
@@ -71,43 +71,43 @@ function onNext() {
           type="text"
           v-model="checkout.address.zipCode"
           placeholder="Zip Code"
-          class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-sm font-medium"
+          class="w-full px-3 lg:px-4 py-2 lg:py-3 bg-slate-50 border border-slate-200 rounded-xl outline-none focus:bg-white focus:ring-2 focus:ring-teal-500/20 focus:border-teal-500 transition-all text-xs lg:text-sm font-medium"
         />
       </div>
     </div>
 
     <!-- Delivery Options -->
-    <div class="mb-6">
-      <label class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-3 block">
+    <div class="mb-4 lg:mb-6">
+      <label class="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 lg:mb-3 block">
         Delivery Options
       </label>
 
-      <div class="space-y-2">
+      <div class="space-y-1.5 lg:space-y-2">
         <div
           v-for="option in SHIPPING_OPTIONS"
           :key="option.id"
           @click="setSelectedShipping(option)"
-          class="flex items-center justify-between p-3 rounded-xl border-2 cursor-pointer transition-all"
+          class="flex items-center justify-between p-2 lg:p-3 rounded-xl border-2 cursor-pointer transition-all"
           :class="selectedShipping.id === option.id
             ? 'border-teal-600 bg-teal-50/20'
             : 'border-slate-100 bg-slate-50/30 hover:bg-slate-50'"
         >
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 lg:gap-3">
             <div
-              class="w-10 h-10 rounded-lg flex items-center justify-center transition-colors"
+              class="w-8 lg:w-10 h-8 lg:h-10 rounded-lg flex items-center justify-center transition-colors text-xs lg:text-sm"
               :class="selectedShipping.id === option.id ? 'bg-teal-600 text-white' : 'bg-slate-200 text-slate-500'"
             >
-              <i :class="`fa-solid fa-${option.icon} text-sm`"></i>
+              <i :class="`fa-solid fa-${option.icon}`"></i>
             </div>
 
             <div>
-              <h4 class="text-xs font-bold text-slate-800">{{ option.name }}</h4>
-              <p class="text-[10px] text-slate-400 font-semibold">{{ option.duration }}</p>
+              <h4 class="text-[11px] lg:text-xs font-bold text-slate-800">{{ option.name }}</h4>
+              <p class="text-[9px] lg:text-[10px] text-slate-400 font-semibold">{{ option.duration }}</p>
             </div>
           </div>
 
-          <div class="flex items-center gap-3">
-            <span class="text-xs font-bold" :class="option.price === 0 ? 'text-teal-600' : 'text-slate-700'">
+          <div class="flex items-center gap-2 lg:gap-3">
+            <span class="text-[10px] lg:text-xs font-bold" :class="option.price === 0 ? 'text-teal-600' : 'text-slate-700'">
               {{ option.price === 0 ? 'Free' : `LKR ${option.price.toFixed(2)}` }}
             </span>
 
@@ -115,7 +115,7 @@ function onNext() {
               class="w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all"
               :class="selectedShipping.id === option.id ? 'border-teal-600 bg-teal-600' : 'border-slate-300 bg-white'"
             >
-              <i v-if="selectedShipping.id === option.id" class="fa-solid fa-check text-[8px] text-white"></i>
+              <i v-if="selectedShipping.id === option.id" class="fa-solid fa-check text-[7px] lg:text-[8px] text-white"></i>
             </div>
           </div>
         </div>
@@ -125,10 +125,10 @@ function onNext() {
     <!-- Next button -->
     <button
       @click="onNext"
-      class="w-full py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-2xl shadow-xl shadow-teal-600/10 transition-all flex items-center justify-center gap-3 text-sm"
+      class="w-full py-2 lg:py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-2xl shadow-xl shadow-teal-600/10 transition-all flex items-center justify-center gap-2 lg:gap-3 text-xs lg:text-sm"
     >
       Proceed to Payment
-      <i class="fa-solid fa-chevron-right text-[10px]"></i>
+      <i class="fa-solid fa-chevron-right text-[8px] lg:text-[10px]"></i>
     </button>
   </div>
 </template>
