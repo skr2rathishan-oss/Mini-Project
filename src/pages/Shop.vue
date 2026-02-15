@@ -8,6 +8,7 @@ import { getProductDetailView } from "../utils/deviceDetect";
 
 import ShopSidebar from "../components/Shop/ShopSidebar.vue";
 import PremiumProductGrid from "../components/Shop/PremiumProductGrid.vue";
+import ShopFilter from "../components/MobileDesign/ShopFilter.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -134,6 +135,23 @@ function onAddToCart(product: Product) {
 
         <!-- Main Content -->
         <div class="flex-1 min-w-0 lg:ml-80">
+          <!-- Mobile Filter Button -->
+          <div class="mb-2">
+            <ShopFilter
+              :categories="categories"
+              :brands="brands"
+              :selectedCategory="selectedCategory"
+              :selectedBrand="selectedBrand"
+              :minPrice="minPrice"
+              :maxPrice="maxPrice"
+              :resultCount="filteredProducts.length"
+              @update:selectedCategory="(v) => (selectedCategory = v)"
+              @update:selectedBrand="(v) => (selectedBrand = v)"
+              @update:minPrice="(v) => (minPrice = v)"
+              @update:maxPrice="(v) => (maxPrice = v)"
+              @clear="clearFilters"
+            />
+          </div>
 
           <!-- Products (scroll target) -->
           <section ref="productsSectionRef" class="scroll-mt-24">
