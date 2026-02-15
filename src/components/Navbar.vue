@@ -35,7 +35,7 @@ const openProfileMenu = () => {
 <template>
   <!-- Desktop Header -->
   <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white h-20 hidden md:flex ">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-6 ml-40">
       <div class="h-20 flex items-center justify-between">
         <!-- LEFT: Logo + Nav -->
         <div class="flex items-center gap-12">
@@ -64,7 +64,7 @@ const openProfileMenu = () => {
         <div class="flex items-center gap-4">
 
           <!-- Search -->
-          <div class="w-[320px]">
+          <div class="w-[320px] ml-50">
             <SearchBar @search="emit('search', $event)" />
           </div>
 
