@@ -12,7 +12,7 @@ const emit = defineEmits<{
 </script>
 
 <template>
-  <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-7 ml-25 mr-25 pt-10">
+  <div class="grid grid-cols-2 gap-3 pt-6 md:grid-cols-4 md:gap-7 md:pt-10 lg:grid-cols-5 lg:gap-7 lg:ml-25 lg:mr-25">
     <ProductCard
       v-for="p in products"
       :key="p.id"

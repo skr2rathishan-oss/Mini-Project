@@ -4,6 +4,7 @@ import { useRouter, useRoute } from "vue-router";
 import { fetchProducts, searchProducts } from "../services/api";
 import type { Product } from "../types/product";
 import { useCartStore } from "../stores/cartStore";
+import { getProductDetailView } from "../utils/deviceDetect";
 
 import ShopSidebar from "../components/Shop/ShopSidebar.vue";
 import PremiumProductGrid from "../components/Shop/PremiumProductGrid.vue";
@@ -98,7 +99,7 @@ function clearFilters() {
 }
 
 function onProductClick(product: Product) {
-  router.push(`/product/${product.id}`);
+  router.push(getProductDetailView(product.id));
 }
 
 function onAddToCart(product: Product) {

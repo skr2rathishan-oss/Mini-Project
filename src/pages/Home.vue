@@ -5,7 +5,9 @@ import * as api from '../services/api'
 import type { Product } from '../types/product'
 import ProductGrid from '../components/ProductGrid.vue'
 import HeroSlider from '../components/HeroSlider.vue'
+import MobileHeroSlide from '../components/MobileDesign/MobileHeroSlide.vue'
 import type { HeroSlide } from '../types/ui'
+import { getProductDetailView } from '../utils/deviceDetect'
 
 const route = useRoute()
 const router = useRouter()
@@ -127,11 +129,11 @@ watch(() => route.query.q, loadProducts)
 
 /* ---------------- Navigation ---------------- */
 const openDetail = (p: Product) => {
-  router.push(`/product/${p.id}`)
+  router.push(getProductDetailView(p.id))
 }
 
 const onHeroClick = (productId: number) => {
-  router.push(`/product/${productId}`)
+  router.push(getProductDetailView(productId))
 }
 
 const goToShop = () => {
@@ -152,12 +154,28 @@ const filterByBrand = (brand: string) => {
 
     <!-- ROW 1 — HERO SLIDER -->
     <section>
-      <HeroSlider v-if="slides.length" :slides="slides" :currentSlide="currentSlide" @dotClick="onDotClick"
-        @slideClick="onHeroClick" />
+      <!-- Mobile Hero Slider -->
+      <MobileHeroSlide
+        v-if="slides.length"
+        class="lg:hidden"
+        :slides="slides"
+        @dotClick="onDotClick"
+        @slideClick="onHeroClick"
+      />
+
+      <!-- Desktop Hero Slider -->
+      <HeroSlider
+        v-if="slides.length"
+        class="hidden lg:block"
+        :slides="slides"
+        :currentSlide="currentSlide"
+        @dotClick="onDotClick"
+        @slideClick="onHeroClick"
+      />
     </section>
 
     <!-- ROW 2 — CATEGORIES -->
-    <section class="container mx-auto px-4">
+    <section class="hidden md:block container mx-auto px-4">
       <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
           Shop by <span class="text-teal-500 font-semibold">Category</span>
@@ -181,7 +199,7 @@ const filterByBrand = (brand: string) => {
 
     <!-- ROW 3 — TRENDING PRODUCTS -->
     <section class="container mx-auto px-4">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
+      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-3">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
           Trending <span class="text-teal-500 font-semibold">Products</span>
         </h2>
