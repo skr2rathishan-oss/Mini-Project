@@ -41,7 +41,7 @@ export const useCartStore = defineStore('cart', () => {
   const remainingForFreeShipping = computed(() => Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal.value))
 
   function formatMoney(n: number) {
-    return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n)
+    return `LKR ${(n * 300).toLocaleString()}`
   }
 
   function add(product: Product, qty = 1) {

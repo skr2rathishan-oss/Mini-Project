@@ -92,12 +92,6 @@ function resetFilters() {
   closeFilter()
 }
 
-function handleBackdropClick(e: MouseEvent) {
-  if (e.target === e.currentTarget) {
-    closeFilter()
-  }
-}
-
 function toggleSection(section: 'category' | 'brand' | 'price' | 'rating') {
   expandedSections.value[section] = !expandedSections.value[section]
 }

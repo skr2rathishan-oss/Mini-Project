@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-white border-t border-gray-100 pt-20 pb-10">
+  <footer class="hidden lg:block bg-white border-t border-gray-100 pt-20 pb-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
         <!-- Brand -->
@@ -109,7 +109,7 @@ type SocialItem = {
 };
 
 const shopLinks = ["Beauty Collection", "Skincare Rituals", "Exclusive Deals", "Gift Cards", "New Arrivals"];
-const supportLinks = ["Order Tracking", "Shipping Policy", "Returns & Exchanges", "Contact Support", "FAQs"];
+const supportLinks = ["Order Tracking", "Shipping Policy", "Returns & Exchanges", "Contact Support"];
 
 const socials: SocialItem[] = [
   { label: "Instagram", icon: Instagram },
