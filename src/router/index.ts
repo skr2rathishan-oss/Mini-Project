@@ -4,6 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Home from "../pages/Home.vue";
 import Shop from "../pages/Shop.vue";
 import ProductDetail from "../pages/ProductDetail.vue";
+import MobiledetailPage from "../pages/MobiledetailPage.vue";
 
 // Auth & profile pages
 const AuthPage = () => import("../pages/AuthPage.vue");
@@ -22,6 +23,8 @@ const router = createRouter({
     { path: "/shop", name: "shop", component: Shop },
 
     { path: "/product/:id", name: "productDetail", component: ProductDetail },
+
+    { path: "/mobile-product/:id", name: "mobileProductDetail", component: MobiledetailPage },
 
     { path: "/cart", name: "cart", component: Cart },
 

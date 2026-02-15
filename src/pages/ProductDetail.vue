@@ -6,6 +6,7 @@ import type { Product } from '../types/product'
 import { fetchProductById, fetchProducts } from '../services/api'
 import { useCartStore } from '../stores/cartStore'
 import { useCheckoutStore } from '../stores/checkout'
+import { getProductDetailView } from '../utils/deviceDetect'
 
 import ProductInfo from '../components/ProductInfo.vue'
 
@@ -30,8 +31,6 @@ const priceLKR = computed(() => {
   return (product.value.price * LKR_RATE).toLocaleString()
 })
 
-
-// 🔥 Replace these with your cart store later
 function onAddToCart(p: Product) {
   cart.add(p)
   console.log('Added to cart:', p)
@@ -53,6 +52,10 @@ function onBuyNow(p: Product) {
 }
 function onWishlist() {
   console.log('Wishlist clicked')
+}
+
+function onRelatedProductClick(productId: number) {
+  router.push(getProductDetailView(productId))
 }
 
 async function load(id: number) {
@@ -148,7 +151,7 @@ watch(
                 :key="item.id"
                 type="button"
                 class="group text-left cursor-pointer"
-                @click="router.push(`/product/${item.id}`)"
+                @click="onRelatedProductClick(item.id)"
               >
                 <div class="bg-[#f9f9f9] aspect-square mb-3 flex items-center justify-center p-4 rounded-2xl">
                   <img

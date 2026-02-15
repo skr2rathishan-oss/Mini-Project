@@ -1,18 +1,8 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-const locationText = ref("Road 13/A, Gulshan 2, Dhaka...");
 const search = ref("");
 
-function onFilterClick() {
-  // TODO: open filter modal / drawer
-  console.log("Filter clicked");
-}
-
-function onBellClick() {
-  // TODO: open notifications
-  console.log("Notifications clicked");
-}
 </script>
 
 <template>

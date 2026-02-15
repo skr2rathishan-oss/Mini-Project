@@ -5,8 +5,9 @@ import * as api from '../services/api'
 import type { Product } from '../types/product'
 import ProductGrid from '../components/ProductGrid.vue'
 import HeroSlider from '../components/HeroSlider.vue'
-import MobileHeroSlide from '../components/MobileHeroSlide.vue'
+import MobileHeroSlide from '../components/MobileDesign/MobileHeroSlide.vue'
 import type { HeroSlide } from '../types/ui'
+import { getProductDetailView } from '../utils/deviceDetect'
 
 const route = useRoute()
 const router = useRouter()
@@ -128,11 +129,11 @@ watch(() => route.query.q, loadProducts)
 
 /* ---------------- Navigation ---------------- */
 const openDetail = (p: Product) => {
-  router.push(`/product/${p.id}`)
+  router.push(getProductDetailView(p.id))
 }
 
 const onHeroClick = (productId: number) => {
-  router.push(`/product/${productId}`)
+  router.push(getProductDetailView(productId))
 }
 
 const goToShop = () => {

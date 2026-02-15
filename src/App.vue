@@ -6,8 +6,8 @@ import { useCartStore } from './types/cart'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer..vue'
 import CartDrawer from "./components/Cart/CartDrawer.vue";
-import MobileBottomBar from "./components/MobileBottomBar.vue";
-import MobileNavbar from "./components/MobileNavbar.vue";
+import MobileBottomBar from "./components/MobileDesign/MobileBottomBar.vue";
+import MobileNavbar from "./components/MobileDesign/MobileNavbar.vue";
 
 const router = useRouter()
 const ui = useUiStore()
@@ -40,6 +40,11 @@ const showNavbar = computed(() => {
   return currentRoute !== 'auth'
 })
 
+const hideMobileNavbarOnProductPage = computed(() => {
+  const currentRoute = router.currentRoute.value.name
+  return currentRoute === 'product' || currentRoute === 'mobileProductDetail'
+})
+
 </script>
 
 <template>
@@ -51,7 +56,10 @@ const showNavbar = computed(() => {
     @search="onSearch"
   />
 
-  <MobileNavbar />
+  <MobileNavbar
+  :class="hideMobileNavbarOnProductPage ? 'hidden lg:block' : 'block lg:hidden'"
+/>
+
 
   <main :class="showNavbar ? 'min-h-screen lg:pt-20 pb-20 lg:pb-0' : 'min-h-screen pb-20 lg:pb-0'">
     <router-view />
