@@ -5,6 +5,7 @@ import * as api from '../services/api'
 import type { Product } from '../types/product'
 import ProductGrid from '../components/ProductGrid.vue'
 import HeroSlider from '../components/HeroSlider.vue'
+import MobileHeroSlide from '../components/MobileHeroSlide.vue'
 import type { HeroSlide } from '../types/ui'
 
 const route = useRoute()
@@ -152,8 +153,24 @@ const filterByBrand = (brand: string) => {
 
     <!-- ROW 1 — HERO SLIDER -->
     <section>
-      <HeroSlider v-if="slides.length" :slides="slides" :currentSlide="currentSlide" @dotClick="onDotClick"
-        @slideClick="onHeroClick" />
+      <!-- Mobile Hero Slider -->
+      <MobileHeroSlide
+        v-if="slides.length"
+        class="lg:hidden"
+        :slides="slides"
+        @dotClick="onDotClick"
+        @slideClick="onHeroClick"
+      />
+
+      <!-- Desktop Hero Slider -->
+      <HeroSlider
+        v-if="slides.length"
+        class="hidden lg:block"
+        :slides="slides"
+        :currentSlide="currentSlide"
+        @dotClick="onDotClick"
+        @slideClick="onHeroClick"
+      />
     </section>
 
     <!-- ROW 2 — CATEGORIES -->

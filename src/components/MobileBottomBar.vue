@@ -49,7 +49,7 @@ function go(tab: Tab) {
       <!-- Active indicator -->
       <span
         v-if="activeTab === tab.id"
-        class="absolute -top-4 w-10 h-1 bg-blue-600 rounded-full"
+        class="absolute -top-4 w-10 h-1 bg-teal-600 rounded-full"
       />
 
       <!-- Icon -->
@@ -58,7 +58,7 @@ function go(tab: Tab) {
         :class="[
           tab.iconClass,
           activeTab === tab.id
-            ? 'text-blue-600 scale-110'
+            ? 'text-teal-600 scale-110'
             : 'text-slate-400 group-hover:text-slate-600 dark:text-slate-400 dark:group-hover:text-slate-200',
         ]"
         aria-hidden="true"
@@ -68,7 +68,7 @@ function go(tab: Tab) {
       <span
         class="text-[10px] font-bold transition-colors"
         :class="activeTab === tab.id
-          ? 'text-blue-600'
+          ? 'text-teal-600'
           : 'text-slate-400 group-hover:text-slate-600 dark:text-slate-400 dark:group-hover:text-slate-200'"
       >
         {{ tab.label }}
