@@ -27,10 +27,11 @@ const emit = defineEmits<{
 const router = useRouter();
 
 const current = ref(0);
+const progressKey = ref(0);
 let timer: number | undefined;
 
 const autoPlay = computed(() => props.autoPlay ?? true);
-const intervalMs = computed(() => props.intervalMs ?? 5000);
+const intervalMs = computed(() => props.intervalMs ?? 1000);
 
 function start() {
     stop();
@@ -39,6 +40,7 @@ function start() {
 
     timer = window.setInterval(() => {
         current.value = (current.value + 1) % props.slides.length;
+        progressKey.value++;
         emit("dotClick", current.value);
     }, intervalMs.value);
 }
@@ -52,7 +54,9 @@ function stop() {
 
 function setSlide(i: number) {
     current.value = i;
+    progressKey.value++;
     emit("dotClick", i);
+    start();
 }
 
 function goToShop() {
@@ -81,6 +85,7 @@ watch(
     () => props.slides?.length,
     () => {
         current.value = 0;
+        progressKey.value++;
         start();
     }
 );
@@ -89,9 +94,29 @@ onMounted(start);
 onBeforeUnmount(stop);
 </script>
 
+<style scoped>
+@keyframes progress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.progress-bar {
+    animation: progress v-bind(intervalMs) linear 1 forwards;
+}
+</style>
+
 <template>
     <!-- Mobile only -->
-    <section class="lg:hidden px-4 py-4">
+    <section class="lg:hidden px-4 py-0 pb-0">
+        <!-- Progress bar -->
+        <div v-if="autoPlay" class="absolute top-0 left-0 right-0 h-0.5 bg-gray-200 z-50">
+            <div :key="progressKey" class="progress-bar h-full bg-teal-600 origin-left"></div>
+        </div>
+
         <div class="relative h-44 rounded-3xl overflow-hidden bg-teal-600 shadow-xl" @mouseenter="stop"
             @mouseleave="start">
             <div v-for="(slide, index) in slides" :key="slide.id"

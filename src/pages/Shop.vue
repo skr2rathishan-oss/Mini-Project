@@ -110,8 +110,8 @@ function onAddToCart(product: Product) {
 
 <template>
   <div class="min-h-screen bg-white mt-0">
-    <main class="max-w-[1440px] mx-auto px-3 lg:px-6 pb-12 pt-0 mt-0">
-      <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 pt-4 lg:pt-8">
+    <main class="max-w-[1440px] mx-auto px-3 lg:px-6 pb-2 pt-0 mt-0">
+      <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 pt-0 mt-0 lg:pt-8">
         <!-- Fixed Sidebar (desktop) -->
         <div class="hidden lg:block fixed top-20 left-6 w-72 h-fit z-40 mt-4">
           <ShopSidebar

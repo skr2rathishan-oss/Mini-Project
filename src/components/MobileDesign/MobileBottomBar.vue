@@ -19,7 +19,6 @@ const tabs: Tab[] = [
   { id: "shop", iconClass: "fa-box", label: "Shop", path: "/shop" },
   { id: "message", iconClass: "fa-message", label: "Messages", path: "/messages" }, // keep typo as you had
   { id: "cart", iconClass: "fa-basket-shopping", label: "Cart", path: "/cart" },
-  { id: "profile", iconClass: "fa-user", label: "Profile", path: "/profile" },
 ];
 
 // Active tab based on current route (more professional than local state)
