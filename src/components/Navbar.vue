@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import SearchBar from './SearchBar.vue'
 import Profile from './Profile/DropDown.vue'
 import { useUiStore } from "../types/ui";
 const ui = useUiStore();
+const router = useRouter()
 
 const props = defineProps<{
   cartCount: number
@@ -21,14 +22,26 @@ const emit = defineEmits<{
 const navLinks = [
   { label: 'Home', to: '/' },
   { label: 'Shop', to: '/Shop' },
-  { label: 'Deals', to: '/Deals' },
-  { label: 'Contact', to: '/Contact' }  
+  { label: 'Deals', to: '/Deals' }
 ] as const
 
 const hasCartItems = computed(() => props.cartCount > 0)
 
 const openProfileMenu = () => {
   ui.openProfileMenu()
+}
+
+const goToFooter = async () => {
+  if (router.currentRoute.value.name !== 'home') {
+    await router.push('/')
+  }
+
+  requestAnimationFrame(() => {
+    const footer = document.getElementById('site-footer')
+    if (footer) {
+      footer.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
+  })
 }
 </script>
 
@@ -57,6 +70,13 @@ const openProfileMenu = () => {
                      hover:text-teal-600 transition-colors">
               {{ l.label }}
             </RouterLink>
+            <button
+              type="button"
+              @click="goToFooter"
+              class="text-[13px] font-semibold tracking-wide text-gray-600 hover:text-teal-600 transition-colors"
+            >
+              Contact
+            </button>
           </nav>
         </div>
 

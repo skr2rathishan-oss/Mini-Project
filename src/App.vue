@@ -48,6 +48,11 @@ const hideMobileNavbarOnProductPage = computed(() => {
   return currentRoute === 'productDetail' || currentRoute === 'mobileProductDetail'
 })
 
+const showMobileSearch = computed(() => {
+  const currentRoute = router.currentRoute.value.name
+  return currentRoute === 'home' || currentRoute === 'shop'
+})
+
 </script>
 
 <template>
@@ -62,6 +67,7 @@ const hideMobileNavbarOnProductPage = computed(() => {
   <MobileNavbar
   :class="hideMobileNavbarOnProductPage ? 'hidden lg:block' : 'block lg:hidden'"
     @search="onSearch"
+    :showSearch="showMobileSearch"
 />
 
 
