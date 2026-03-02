@@ -61,6 +61,7 @@ const hideMobileNavbarOnProductPage = computed(() => {
 
   <MobileNavbar
   :class="hideMobileNavbarOnProductPage ? 'hidden lg:block' : 'block lg:hidden'"
+    @search="onSearch"
 />
 
 
