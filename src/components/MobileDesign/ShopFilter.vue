@@ -30,8 +30,8 @@ const expandedSections = ref<{
   price: boolean
   rating: boolean
 }>({
-  category: true,
-  brand: true,
+  category: false,
+  brand: false,
   price: true,
   rating: false
 })
@@ -111,11 +111,11 @@ onMounted(() => {
   <div class="relative lg:hidden">
     <button
       @click="openFilter"
-      class="inline-flex items-center gap-1.5 bg-sky-500 hover:bg-sky-600 text-white font-semibold py-2 px-3 rounded-lg transition-colors text-sm"
+      class="inline-flex items-center gap-1.5 bg-teal-600  hover:bg-teal-700 text-white font-semibold py-2 px-3 rounded-lg transition-colors text-sm"
     >
       <i class="fa-solid fa-filter text-base"></i>
       <span>Filter</span>
-      <span v-if="hasActiveFilters" class="ml-1 bg-white text-sky-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
+      <span v-if="hasActiveFilters" class="ml-1 bg-white text-teal-600 text-xs font-bold px-1.5 py-0.5 rounded-full">
         {{ resultCount }}
       </span>
     </button>
@@ -216,13 +216,13 @@ onMounted(() => {
                   v-model="localMinPrice"
                   type="number"
                   placeholder="Min"
-                  class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 w-30"
                 />
                 <input
                   v-model="localMaxPrice"
                   type="number"
                   placeholder="Max"
-                  class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500"
+                  class="flex-1 px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 w-30"
                 />
               </div>
               <p class="text-xs text-slate-500">

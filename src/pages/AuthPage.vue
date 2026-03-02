@@ -33,7 +33,7 @@ function onBack() {
     <!-- Left Panel: Image Section -->
     <div class="hidden lg:block lg:w-3/5 relative overflow-hidden">
       <img
-        src="C:\Users\Rathishan\Desktop\Git\GUI_Project\ecommerce1\Mini-Project\src\assets\images\best-ecommerce-website-templates.jpg"
+        src="../assets/images/best-ecommerce-website-templates.jpg"
         alt="Lighthouse at dusk"
         class="absolute inset-0 w-full h-full object-cover"
       />
