@@ -37,7 +37,7 @@ function onBack() {
         alt="Lighthouse at dusk"
         class="absolute inset-0 w-full h-full object-cover"
       />
-      <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+      <div class="absolute inset-0 bg-linear-to-t from-black/40 to-transparent"></div>
 
       <!-- Back Button -->
       <button

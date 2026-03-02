@@ -18,21 +18,24 @@ const onLogoClick = () => router.push('/')
 const onCartClick = () => ui.openCart()
 
 const onSearch = (q: string) => {
-  if (q.trim()) {
-    const currentRoute = router.currentRoute.value.name
-    if (currentRoute === 'Shop') {
-      // Stay on shop page but update search
-      router.push({ name: 'Shop', query: { q } })
-    } else {
-      // Go to home page with search
-      router.push({ name: 'home', query: { q } })
+  const trimmed = q.trim()
+  if (!trimmed) return
+
+  const currentRoute = router.currentRoute.value
+  const baseQuery = currentRoute.name === 'shop' ? { ...currentRoute.query } : {}
+
+  router.push({
+    name: 'shop',
+    query: {
+      ...baseQuery,
+      q: trimmed
     }
-  }
+  })
 }
 
 const showFooter = computed(() => {
   const currentRoute = router.currentRoute.value.name
-  return currentRoute !== 'Shop' && currentRoute !== 'auth' && currentRoute !== 'checkout'
+  return currentRoute !== 'shop' && currentRoute !== 'auth' && currentRoute !== 'checkout'
 })
 
 const showNavbar = computed(() => {
@@ -42,7 +45,7 @@ const showNavbar = computed(() => {
 
 const hideMobileNavbarOnProductPage = computed(() => {
   const currentRoute = router.currentRoute.value.name
-  return currentRoute === 'product' || currentRoute === 'mobileProductDetail'
+  return currentRoute === 'productDetail' || currentRoute === 'mobileProductDetail'
 })
 
 </script>
