@@ -8,6 +8,12 @@ const showMenu = ref(false);
 const showNavbar = ref(true);
 let lastScrollY = 0;
 
+withDefaults(defineProps<{
+  showSearch?: boolean
+}>(), {
+  showSearch: true
+})
+
 const emit = defineEmits<{
   (e: 'search', query: string): void
 }>();
@@ -82,7 +88,7 @@ onUnmounted(() => {
   </header>
 
   <!-- Search bar (always visible) -->
-  <div class="lg:hidden bg-white sticky top-0 z-40 px-4 pb-4 pt-2">
+  <div v-if="showSearch" class="lg:hidden bg-white sticky top-0 z-40 px-4 pb-4 pt-2">
     <SearchBar @search="onSearch" />
   </div>
 </template>
