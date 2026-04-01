@@ -58,21 +58,21 @@ watch(
   />
 
   <!-- Shipping/Payment -->
-  <div v-else class="min-h-screen w-full flex flex-col bg-white dark:bg-slate-900">
+  <div v-else class="fixed inset-0 z-40 h-screen w-full flex flex-col overflow-hidden bg-white dark:bg-slate-900">
     <CheckoutHeader @cancel="onBack" />
 
-    <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
+    <div class="flex-1 min-h-0 flex flex-col lg:flex-row overflow-hidden">
       <!-- Left -->
-      <div class="flex-1 overflow-y-auto custom-scrollbar px-4 lg:px-16 py-6 lg:py-10 lg:min-w-0">
-        <div class="max-w-2xl mx-auto">
+      <div class="flex-1 min-h-0 px-4 lg:px-10 py-4 lg:py-4 lg:min-w-0">
+        <div class="max-w-2xl mx-auto h-full">
           <CheckoutShipping v-if="checkout.step === 'shipping'" />
           <CheckoutPayment v-else />
         </div>
       </div>
 
       <!-- Order Summary - Below on mobile, Right side on desktop -->
-      <div class="w-full lg:w-auto lg:flex-none px-4 lg:px-0 py-6 lg:py-10 lg:mr-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-700">
-        <div class="max-w-sm mx-auto lg:max-w-md">
+      <div class="w-full lg:w-auto lg:flex-none px-4 lg:px-0 py-4 lg:pt-7 lg:pb-4 lg:pl-6 lg:pr-4 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-700">
+        <div class="max-w-sm mx-auto lg:mx-0 lg:max-w-2xl h-full">
           <OrderSummary />
         </div>
       </div>
