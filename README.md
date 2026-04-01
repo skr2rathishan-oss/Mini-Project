@@ -68,8 +68,8 @@ Follow these steps to safely run the application locally on your machine.
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repository-url>
-   cd ecommerce1/Mini-Project
+   git clone https://github.com/skr2rathishan-oss/Mini-Project.git
+   cd Mini-Project
    ```
 
 2. **Install project dependencies:**
