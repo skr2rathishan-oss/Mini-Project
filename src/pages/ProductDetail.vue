@@ -39,15 +39,15 @@ watch(() => route.params.id, (newId) => {
 </script>
 
 <template>
-  <div class="bg-white min-h-screen font-sans text-gray-900 transition-colors duration-300">
+  <div class="bg-white dark:bg-slate-900 min-h-screen font-sans text-gray-900 dark:text-gray-100 transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-6 py-10 md:py-12">
 
       <!-- States -->
-      <div v-if="loading" class="py-16 text-center text-sm text-gray-500">
+      <div v-if="loading" class="py-16 text-center text-sm text-gray-500 dark:text-gray-400">
         Loading product...
       </div>
 
-      <div v-else-if="error" class="py-16 text-center text-sm text-red-500">
+      <div v-else-if="error" class="py-16 text-center text-sm text-red-500 dark:text-red-400">
         {{ error }}
       </div>
 
@@ -56,7 +56,7 @@ watch(() => route.params.id, (newId) => {
         <!-- Left: Image -->
         <div class="lg:col-span-6">
           <div
-            class="bg-[#f9f9f9] aspect-square w-full flex items-center justify-center p-10 md:p-12 relative rounded-3xl h-130 border-2 border-teal-500"
+            class="bg-[#f9f9f9] dark:bg-slate-800 aspect-square w-full flex items-center justify-center p-10 md:p-12 relative rounded-3xl h-130 border-2 border-teal-500 dark:border-teal-600"
           >
             <img
               :src="activeImage"
@@ -65,16 +65,16 @@ watch(() => route.params.id, (newId) => {
             />
 
             <!-- Price badge (optional) -->
-            <div class="absolute bottom-5 left-5 bg-white/90 backdrop-blur px-4 py-2 rounded-2xl border border-teal-500">
-              <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Price</p>
-              <p class="text-sm font-black text-slate-900">LKR {{ priceLKR }}</p>
+            <div class="absolute bottom-5 left-5 bg-white/90 dark:bg-slate-800/90 backdrop-blur px-4 py-2 rounded-2xl border border-teal-500 dark:border-teal-600">
+              <p class="text-[10px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-widest">Price</p>
+              <p class="text-sm font-black text-slate-900 dark:text-slate-100">LKR {{ priceLKR }}</p>
             </div>
           </div>
 
           <!-- Recently Viewed -->
           <div class="mt-12">
             <div class="flex items-center justify-between mb-6">
-              <h3 class="text-sm font-black text-slate-800 uppercase tracking-widest">
+              <h3 class="text-sm font-black text-slate-800 dark:text-slate-200 uppercase tracking-widest">
                 Recently viewed
               </h3>
             </div>
@@ -87,7 +87,7 @@ watch(() => route.params.id, (newId) => {
                 class="group text-left cursor-pointer"
                 @click="onRelatedProductClick(item.id)"
               >
-                <div class="bg-[#f9f9f9] aspect-square mb-3 flex items-center justify-center p-4 rounded-2xl">
+                <div class="bg-[#f9f9f9] dark:bg-slate-800 aspect-square mb-3 flex items-center justify-center p-4 rounded-2xl border border-transparent dark:border-slate-700">
                   <img
                     :src="item.thumbnail"
                     class="max-w-full max-h-full object-contain"
@@ -96,10 +96,10 @@ watch(() => route.params.id, (newId) => {
                 </div>
 
                 <div class="flex justify-between items-center text-[10px] font-bold">
-                  <span class="text-gray-500 truncate pr-2 uppercase">
+                  <span class="text-gray-500 dark:text-gray-400 truncate pr-2 uppercase">
                     {{ item.title }}
                   </span>
-                  <span class="whitespace-nowrap text-slate-900">
+                  <span class="whitespace-nowrap text-slate-900 dark:text-slate-100">
                     LKR {{ (item.price * LKR_RATE).toLocaleString() }}
                   </span>
                 </div>
@@ -115,8 +115,8 @@ watch(() => route.params.id, (newId) => {
             :key="idx"
             type="button"
             @click="activeImage = img"
-            class="w-20 lg:w-full aspect-square bg-[#f9f9f9] p-2 cursor-pointer border-4 transition-all rounded-2xl"
-            :class="activeImage === img ? 'border-teal-500 shadow-xl' : 'border-transparent hover:border-slate-200'"
+            class="w-20 lg:w-full aspect-square bg-[#f9f9f9] dark:bg-slate-800 p-2 cursor-pointer border-4 transition-all rounded-2xl"
+            :class="activeImage === img ? 'border-teal-500 dark:border-teal-600 shadow-xl' : 'border-transparent hover:border-slate-200 dark:hover:border-slate-700'"
           >
             <img :src="img" class="w-full h-full object-contain" :alt="`view-${idx}`" />
           </button>

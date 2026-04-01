@@ -43,23 +43,23 @@ onUnmounted(() => {
     <div
       v-if="ui.isProfileMenuOpen"
       ref="menuRef"
-      class="absolute right-0 mt-3 w-72 rounded-2xl border border-slate-200
-             bg-white shadow-xl p-3 z-50"
+      class="absolute right-0 mt-3 w-72 rounded-2xl border border-slate-200 dark:border-slate-700
+             bg-white dark:bg-slate-800 shadow-xl p-3 z-50"
       style="top: 100%; margin-top: 8px;"
     >
       <div class="px-3 py-2">
-        <p class="text-sm font-black text-slate-900">Account</p>
-        <p class="text-xs text-slate-400">Manage your profile & orders</p>
+        <p class="text-sm font-black text-slate-900 dark:text-white">Account</p>
+        <p class="text-xs text-slate-400 dark:text-slate-500">Manage your profile & orders</p>
       </div>
 
-      <div class="h-px bg-slate-100 my-2"></div>
+      <div class="h-px bg-slate-100 dark:bg-slate-700 my-2"></div>
 
       <button class="menuItem" @click="go('/auth')">My Profile</button>
       <button class="menuItem" @click="go('/orders')">Orders</button>
       <button class="menuItem" @click="go('/wishlist')">Wishlist</button>
       <button class="menuItem" @click="go('/settings')">Settings</button> 
 
-      <div class="h-px bg-slate-100 my-2"></div>
+      <div class="h-px bg-slate-100 dark:bg-slate-700 my-2"></div>
 
       <ThemeToggle />
     </div>
@@ -79,6 +79,12 @@ onUnmounted(() => {
 }
 .menuItem:hover {
   background: rgb(248 250 252);
+}
+:global(.dark) .menuItem {
+  color: rgb(203 213 225);
+}
+:global(.dark) .menuItem:hover {
+  background: rgb(51 65 85);
 }
 
 .menu-enter-active,
