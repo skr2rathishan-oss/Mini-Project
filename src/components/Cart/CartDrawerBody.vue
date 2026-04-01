@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from "vue";
-main
 import type { CartItem } from "../../types/cart";
 
 const props = defineProps<{

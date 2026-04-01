@@ -30,10 +30,6 @@ const maxPrice = ref<string>("");
 const categoriesList = ref<string[]>(['all']);
 const brandsList = ref<string[]>(['all']);
 
-// Static categories and brands populated after fetch
-const categoriesList = ref<string[]>(['all']);
-const brandsList = ref<string[]>(['all']);
-
 async function loadProducts() {
   loading.value = true;
   products.value = [];
