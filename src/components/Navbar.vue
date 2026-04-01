@@ -7,6 +7,7 @@ import { useUiStore } from "../types/ui";
 const ui = useUiStore();
 const router = useRouter()
 
+
 const props = defineProps<{
   cartCount: number
 }>()
@@ -87,8 +88,6 @@ const goToFooter = async () => {
           <div class="w-[320px] ml-50">
             <SearchBar @search="emit('search', $event)" />
           </div>
-
-         
 
           <!-- Wishlist -->
           <button class="relative w-10 h-10 rounded-full bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-slate-300 flex items-center justify-center

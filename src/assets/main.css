@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+/* 
+  Tailwind v4: Override the default OS-based dark mode detection.
+  Force dark mode to only activate when the <html> element has class="dark".
+  This allows our Pinia useUiStore to control dark mode programmatically.
+*/
+@custom-variant dark (&:where(.dark, .dark *));

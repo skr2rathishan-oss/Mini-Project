@@ -49,9 +49,16 @@ export const useUiStore = defineStore("ui", {
 
     /* ---------------- Theme ---------------- */
     initTheme() {
-      // Read saved theme if exists
-      const saved = (localStorage.getItem("theme") as ThemeMode | null) ?? "light";
-      this.setTheme(saved);
+      // Bust stale saved themes from earlier development sessions
+      const THEME_VERSION = 'v2';
+      const savedVersion = localStorage.getItem('theme_version');
+      if (savedVersion !== THEME_VERSION) {
+        // Clear old stale dark mode storage and reset to light
+        localStorage.removeItem('theme');
+        localStorage.setItem('theme_version', THEME_VERSION);
+      }
+      const saved = localStorage.getItem('theme') as ThemeMode | null;
+      this.setTheme(saved ?? 'light');
     },
 
     setTheme(mode: ThemeMode) {

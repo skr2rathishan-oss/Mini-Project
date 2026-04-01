@@ -11,7 +11,7 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
 </script>
 
 <template>
-  <div class="group relative flex flex-col bg-white rounded-lg lg:rounded-xl border border-slate-200 overflow-hidden shadow-sm lg:hover:shadow-lg lg:transition-shadow lg:duration-300" style="height: calc(100% - 2px);">
+  <div class="group relative flex flex-col bg-white dark:bg-slate-800 rounded-lg lg:rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden shadow-sm lg:hover:shadow-lg lg:transition-shadow lg:duration-300" style="height: calc(100% - 2px);">
     <!-- Image Section -->
     <div class="relative">
       <button
@@ -54,22 +54,22 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
     </div>
 
     <!-- Details Section -->
-    <div class="px-1.5 py-1.5 lg:px-4 lg:py-3 bg-white">
+    <div class="px-1.5 py-1.5 lg:px-4 lg:py-3 bg-white dark:bg-slate-800">
       <div class="flex items-center justify-between mb-1 lg:mb-2">
-        <p class="text-[7px] lg:text-[9px] font-black text-slate-400 uppercase tracking-[0.12em] lg:tracking-[0.15em]">
+        <p class="text-[7px] lg:text-[9px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.12em] lg:tracking-[0.15em]">
           {{ product.category }}
         </p>
         <div class="flex items-center gap-0.5">
           <span class="text-amber-400 text-xs lg:text-sm">★</span>
-          <span class="text-[8px] lg:text-[10px] font-bold text-slate-900">{{ product.rating }}</span>
+          <span class="text-[8px] lg:text-[10px] font-bold text-slate-900 dark:text-slate-100">{{ product.rating }}</span>
         </div>
       </div>
 
-      <h3 class="text-xs lg:text-sm font-bold text-slate-950 mb-1 lg:mb-2 lg:group-hover:text-teal-600 lg:transition-colors leading-tight line-clamp-2">
+      <h3 class="text-xs lg:text-sm font-bold text-slate-950 dark:text-slate-100 mb-1 lg:mb-2 lg:group-hover:text-teal-600 lg:transition-colors leading-tight line-clamp-2">
         {{ product.title }}
       </h3>
 
-      <span class="text-sm lg:text-base font-black text-slate-950 tracking-tighter">
+      <span class="text-sm lg:text-base font-black text-slate-950 dark:text-slate-100 tracking-tighter">
         LKR {{ priceLKR }}
       </span>
     </div>

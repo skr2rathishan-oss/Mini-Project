@@ -22,15 +22,15 @@ const emit = defineEmits<{
   <aside class="w-full lg:w-72 flex-shrink-0">
     <div class="space-y-8">
       <!-- Summary -->
-      <div class="bg-teal-50 border border-teal-100 rounded-2xl p-4">
-        <div class="flex items-center gap-3 text-teal-800">
+      <div class="bg-teal-50 dark:bg-teal-900/30 border border-teal-100 dark:border-teal-800 rounded-2xl p-4">
+        <div class="flex items-center gap-3 text-teal-800 dark:text-teal-300">
           <!-- Filter icon -->
           <svg viewBox="0 0 24 24" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M4 5h16M6 12h12M10 19h4" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           <h2 class="font-bold">{{ resultCount }} Results</h2>
         </div>
-        <p class="text-xs text-teal-700/80 mt-1">Filter by luxury essentials</p>
+        <p class="text-xs text-teal-700/80 dark:text-teal-400/80 mt-1">Filter by luxury essentials</p>
       </div>
 
       <!-- Filters -->
@@ -50,7 +50,7 @@ const emit = defineEmits<{
 
           <div class="relative">
             <select
-              class="w-full bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm appearance-none
+              class="w-full bg-white dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-600 rounded-xl px-4 py-2.5 text-sm appearance-none
                      focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
               :value="selectedCategory"
               @change="emit('update:selectedCategory', ($event.target as HTMLSelectElement).value)"
@@ -76,7 +76,7 @@ const emit = defineEmits<{
 
           <div class="relative">
             <select
-              class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-sm appearance-none
+              class="w-full bg-white dark:bg-slate-800 dark:text-slate-200 border border-slate-300 dark:border-slate-600 rounded-xl px-4 py-2.5 text-sm appearance-none
                      focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-all"
               :value="selectedBrand"
               @change="emit('update:selectedBrand', ($event.target as HTMLSelectElement).value)"
@@ -104,7 +104,7 @@ const emit = defineEmits<{
             <input
               type="number"
               placeholder="Min"
-              class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm
+              class="w-full bg-white dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2 text-sm
                      focus:ring-2 focus:ring-teal-500/20 outline-none"
               :value="minPrice"
               @input="emit('update:minPrice', ($event.target as HTMLInputElement).value)"
@@ -112,7 +112,7 @@ const emit = defineEmits<{
             <input
               type="number"
               placeholder="Max"
-              class="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-sm
+              class="w-full bg-white dark:bg-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-600 rounded-xl px-3 py-2 text-sm
                      focus:ring-2 focus:ring-teal-500/20 outline-none"
               :value="maxPrice"
               @input="emit('update:maxPrice', ($event.target as HTMLInputElement).value)"
@@ -126,15 +126,15 @@ const emit = defineEmits<{
           <div class="space-y-2">
             <label class="flex items-center gap-3 cursor-pointer group">
               <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
-              <span class="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">In Stock</span>
+              <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">In Stock</span>
             </label>
             <label class="flex items-center gap-3 cursor-pointer group">
               <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
-              <span class="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">On Sale</span>
+              <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">On Sale</span>
             </label>
             <label class="flex items-center gap-3 cursor-pointer group">
               <input type="checkbox" class="w-4 h-4 rounded border-slate-300 text-teal-600 focus:ring-teal-500" />
-              <span class="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">Pre-order</span>
+              <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-slate-900 dark:group-hover:text-white transition-colors">Pre-order</span>
             </label>
           </div>
         </div>
