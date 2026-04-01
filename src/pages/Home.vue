@@ -164,8 +164,8 @@ const filterByBrand = (brand: string) => {
 
     <!-- ROW 2 — CATEGORIES -->
     <section class="hidden md:block container mx-auto px-4">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
-        <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-3 mb-6">
+        <h2 class="text-xl md:text-3xl font-bold text-gray-800 dark:text-white tracking-tight uppercase">
           Shop by <span class="text-teal-500 font-semibold">Category</span>
         </h2>
         <button @click="goToShop" class="text-teal-600 hover:text-teal-700 font-medium text-sm">
@@ -174,36 +174,36 @@ const filterByBrand = (brand: string) => {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div v-for="category in categories" :key="category.name"
-          class="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-md transition-shadow cursor-pointer"
+          class="bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-6 text-center hover:shadow-md transition-shadow cursor-pointer"
           @click="filterByCategory(category.name)">
-          <div class="w-12 h-12 mx-auto mb-3 bg-teal-100 rounded-full flex items-center justify-center">
-            <i :class="category.icon" class="text-teal-600 text-xl"></i>
+          <div class="w-12 h-12 mx-auto mb-3 bg-teal-100 dark:bg-teal-900/40 rounded-full flex items-center justify-center">
+            <i :class="category.icon" class="text-teal-600 dark:text-teal-400 text-xl"></i>
           </div>
-          <h3 class="font-semibold text-gray-800">{{ category.name }}</h3>
-          <p class="text-sm text-gray-500">{{ category.count }} products</p>
+          <h3 class="font-semibold text-gray-800 dark:text-slate-100">{{ category.name }}</h3>
+          <p class="text-sm text-gray-500 dark:text-slate-400">{{ category.count }} products</p>
         </div>
       </div>
     </section>
 
     <!-- ROW 3 — TRENDING PRODUCTS -->
     <section class="container mx-auto px-4">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-3">
-        <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-3 mb-3">
+        <h2 class="text-xl md:text-3xl font-bold text-gray-800 dark:text-white tracking-tight uppercase">
           Trending <span class="text-teal-500 font-semibold">Products</span>
         </h2>
         <button @click="goToShop" class="text-teal-600 hover:text-teal-700 font-medium text-sm">
           View All →
         </button>
       </div>
-      <div v-if="loading" class="text-gray-500">Loading...</div>
+      <div v-if="loading" class="text-gray-500 dark:text-slate-400">Loading...</div>
       <div v-else-if="error" class="text-rose-600">{{ error }}</div>
       <ProductGrid v-else :products="trendingProducts" @productClick="openDetail" />
     </section>
 
     <!-- ROW 4 — NEW YEAR OFFERS -->
     <section class="container mx-auto px-4">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
-        <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-3 mb-6">
+        <h2 class="text-xl md:text-3xl font-bold text-gray-800 dark:text-white tracking-tight uppercase">
           New Year <span class="text-teal-500 font-semibold">Offers</span>
         </h2>
         <button @click="goToShop" class="text-teal-600 hover:text-teal-700 font-medium text-sm">
@@ -229,8 +229,8 @@ const filterByBrand = (brand: string) => {
 
     <!-- ROW 5 — FEATURED BRANDS -->
     <section class="container mx-auto px-4">
-      <div class="flex items-center justify-between border-b border-gray-200 pb-3 mb-6">
-        <h2 class="text-xl md:text-3xl font-bold text-gray-800 tracking-tight uppercase">
+      <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-3 mb-6">
+        <h2 class="text-xl md:text-3xl font-bold text-gray-800 dark:text-white tracking-tight uppercase">
           Featured <span class="text-teal-500 font-semibold">Brands</span>
         </h2>
         <button @click="goToShop" class="text-teal-600 hover:text-teal-700 font-medium text-sm">
@@ -239,9 +239,9 @@ const filterByBrand = (brand: string) => {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
         <div v-for="brand in featuredBrands" :key="brand"
-          class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center hover:bg-gray-100 transition-colors cursor-pointer"
+          class="bg-gray-50 dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4 text-center hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors cursor-pointer"
           @click="filterByBrand(brand)">
-          <h4 class="font-semibold text-gray-800">{{ brand }}</h4>
+          <h4 class="font-semibold text-gray-800 dark:text-slate-100">{{ brand }}</h4>
         </div>
       </div>
     </section>

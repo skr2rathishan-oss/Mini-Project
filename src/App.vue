@@ -70,7 +70,7 @@ const showMobileSearch = computed(() => {
 />
 
 
-  <main :class="showNavbar ? 'min-h-screen lg:pt-20 pb-20 lg:pb-0' : 'min-h-screen pb-20 lg:pb-0'">
+  <main :class="showNavbar ? 'min-h-screen lg:pt-20 pb-20 lg:pb-0 bg-white dark:bg-slate-900 transition-colors duration-300' : 'min-h-screen pb-20 lg:pb-0 bg-white dark:bg-slate-900 transition-colors duration-300'">
     <router-view />
     <CartDrawer
       :items="cart.items"

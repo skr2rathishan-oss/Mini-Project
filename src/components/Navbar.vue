@@ -47,7 +47,7 @@ const goToFooter = async () => {
 
 <template>
   <!-- Desktop Header -->
-  <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 bg-white h-20 hidden lg:flex ">
+  <header class="fixed top-0 left-0 right-0 z-50 border-b border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-900 h-20 hidden lg:flex transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-6 ml-40">
       <div class="h-20 flex items-center justify-between">
         <!-- LEFT: Logo + Nav -->
@@ -59,21 +59,21 @@ const goToFooter = async () => {
               <i class="fa-solid fa-bag-shopping text-white text-lg"></i>
             </span>
 
-            <span class="text-2xl font-black tracking-tight text-gray-900">
+            <span class="text-2xl font-black tracking-tight text-gray-900 dark:text-white">
               SHOP<span class="text-teal-600">NET</span>
             </span>
           </button>
 
           <!-- Nav Links -->
           <nav class="flex items-center gap-8">
-            <RouterLink v-for="l in navLinks" :key="l.label" :to="l.to" class="text-[13px] font-semibold tracking-wide text-gray-600
-                     hover:text-teal-600 transition-colors">
+            <RouterLink v-for="l in navLinks" :key="l.label" :to="l.to" class="text-[13px] font-semibold tracking-wide text-gray-600 dark:text-slate-300
+                     hover:text-teal-600 dark:hover:text-teal-400 transition-colors">
               {{ l.label }}
             </RouterLink>
             <button
               type="button"
               @click="goToFooter"
-              class="text-[13px] font-semibold tracking-wide text-gray-600 hover:text-teal-600 transition-colors"
+              class="text-[13px] font-semibold tracking-wide text-gray-600 dark:text-slate-300 hover:text-teal-600 dark:hover:text-teal-400 transition-colors"
             >
               Contact
             </button>
@@ -91,14 +91,14 @@ const goToFooter = async () => {
          
 
           <!-- Wishlist -->
-          <button class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+          <button class="relative w-10 h-10 rounded-full bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-slate-300 flex items-center justify-center
                    hover:bg-red-50 hover:text-red-500 transition cursor-pointer" @click="emit('wishlistClick')" title="Wishlist">
             <i class="fa-regular fa-heart text-lg"></i>
             <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
           </button>
 
           <!-- Cart -->
-          <button class="relative w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+          <button class="relative w-10 h-10 rounded-full bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-slate-300 flex items-center justify-center
                    hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer" @click="ui.openCart()" title="Cart">
             <i class="fa-solid fa-bag-shopping text-lg"></i>
 
@@ -112,7 +112,7 @@ const goToFooter = async () => {
           <div class="relative">
             <button
               @click="openProfileMenu"
-              class="w-10 h-10 rounded-full bg-gray-50 text-gray-600 flex items-center justify-center
+              class="w-10 h-10 rounded-full bg-gray-50 dark:bg-slate-800 text-gray-600 dark:text-slate-300 flex items-center justify-center
                      hover:bg-teal-50 hover:text-teal-600 transition cursor-pointer"
               title="Profile"
             >
