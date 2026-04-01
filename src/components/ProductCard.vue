@@ -2,13 +2,12 @@
 import type { Product } from '../types/product'
 import { computed } from 'vue'
 import { useCartStore } from '../stores/cartStore'
+import { LKR_RATE } from '../constants/currency'
 
 const props = defineProps<{ product: Product }>()
 const emit = defineEmits<{ (e: 'click', product: Product): void }>()
 
 const cart = useCartStore()
-
-const LKR_RATE = 300
 
 const soldText = computed(() => {
   const soldCount = Math.floor((props.product.rating * 1000) + (props.product.id * 50))

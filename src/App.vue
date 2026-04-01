@@ -52,6 +52,11 @@ const showMobileSearch = computed(() => {
   return name === 'home' || name === 'shop'
 })
 
+const showBottomBar = computed(() => {
+  const name = route.name
+  return name !== 'auth' && name !== 'checkout'
+})
+
 </script>
 
 <template>
@@ -78,7 +83,7 @@ const showMobileSearch = computed(() => {
     />
   </main>
 
-  <MobileBottomBar />
+  <MobileBottomBar v-if="showBottomBar" />
   
   <Footer v-if="showFooter" />
 </template>

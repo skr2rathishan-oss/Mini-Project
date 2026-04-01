@@ -25,9 +25,15 @@ function onComplete() {
 }
 
 onMounted(() => {
-  // Only set cart items if mode is "cart" and cart has selected items
-  if (checkout.mode === "cart" && cart.selectedItems.length > 0) {
-    checkout.setItems(cart.selectedItems.map(item => ({ ...item.product, name: item.product.title, image: item.product.thumbnail, quantity: item.quantity })));
+  if (checkout.mode !== "buyNow" && cart.selectedItems.length > 0) {
+    checkout.setItems(
+      cart.selectedItems.map(item => ({
+        ...item.product,
+        name: item.product.title,
+        image: item.product.thumbnail,
+        quantity: item.quantity,
+      }))
+    );
   }
 });
 
@@ -35,8 +41,9 @@ onMounted(() => {
 watch(
   () => [cart.selectedItems.length, cart.subtotal],
   () => {
+    if (checkout.mode === "buyNow") return;
     const newItems = cart.selectedItems;
-    if (checkout.mode === "cart" && newItems.length > 0) {
+    if (newItems.length > 0) {
       checkout.setItems(
         newItems.map((item) => ({
           ...item.product,

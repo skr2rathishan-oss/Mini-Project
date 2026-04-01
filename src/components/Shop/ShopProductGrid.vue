@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import type { Product } from "../../types/product";
+import { LKR_RATE } from "../../constants/currency";
 
 const props = defineProps<{ products: Product[] }>();
 defineEmits<{ (e: "productClick", p: Product): void }>();
-
-const LKR_RATE = 300;
 
 const getPriceLKR = (price: number) => (price * LKR_RATE).toLocaleString();
 </script>
@@ -32,7 +31,7 @@ const getPriceLKR = (price: number) => (price * LKR_RATE).toLocaleString();
         <p class="text-sm font-extrabold text-gray-900 line-clamp-2">{{ p.title }}</p>
         <div class="mt-2 flex items-center justify-between">
           <p class="text-teal-700 font-black text-sm">LKR {{ getPriceLKR(p.price) }}</p>
-          <p class="text-xs text-gray-400 truncate max-w-[80px]">{{ p.brand }}</p>
+          <p class="text-xs text-gray-400 truncate max-w-20">{{ p.brand }}</p>
         </div>
       </div>
     </button>

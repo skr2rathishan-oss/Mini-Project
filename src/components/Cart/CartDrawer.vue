@@ -18,22 +18,12 @@ const isOpen = computed(() => ui.isCartOpen);
 const items = computed(() => cart.items);
 const selectedItems = computed(() => cart.selectedItems);
 const subtotal = computed(() => cart.subtotal);
-const subtotalLKR = computed(() => subtotal.value * LKR_RATE);
 
 /** Shipping + totals */
-const shippingThreshold = 200 * LKR_RATE;
-
-const progress = computed(() => {
-  const p = (subtotalLKR.value / shippingThreshold) * 100;
-  return Math.min(100, Math.max(0, p));
-});
-
-const remainingForFreeShipping = computed(() =>
-  Math.max(0, shippingThreshold - subtotalLKR.value)
-);
-
-const shippingFee = computed(() => (progress.value >= 100 ? 0 : 15));
-const total = computed(() => subtotal.value + shippingFee.value);
+const progress = computed(() => cart.progress)
+const remainingForFreeShipping = computed(() => cart.remainingForFreeShipping)
+const shippingFee = computed(() => cart.shippingFeeUSD)
+const total = computed(() => subtotal.value + shippingFee.value)
 
 /** Derived helpers */
 const itemCount = computed(() => items.value.length);

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useCheckoutStore } from "@/stores/checkout";
+import { LKR_RATE } from "../../constants/currency";
 const checkout = useCheckoutStore();
 </script>
 
@@ -60,7 +61,7 @@ const checkout = useCheckoutStore();
         @click="checkout.goConfirmation()"
         class="bg-teal-600 text-white py-2 lg:py-2.5 px-2 rounded-xl font-bold text-xs lg:text-sm shadow-xl shadow-teal-600/10 hover:bg-teal-700 transition-all active:scale-95 flex items-center justify-center gap-2"
       >
-        Pay LKR {{ checkout.total.toFixed(2) }}
+        Pay LKR {{ (checkout.total * LKR_RATE).toLocaleString() }}
       </button>
     </div>
   </div>
