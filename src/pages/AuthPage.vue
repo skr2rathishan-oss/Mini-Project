@@ -29,7 +29,7 @@ function onBack() {
 </script>
 
 <template>
-  <div class="h-screen flex bg-gray-50">
+  <div class="h-screen flex bg-gray-50 dark:bg-slate-900">
     <!-- Left Panel: Image Section -->
     <div class="hidden lg:block lg:w-3/5 relative overflow-hidden">
       <img
@@ -59,7 +59,7 @@ function onBack() {
     </div>
 
     <!-- Right Panel -->
-    <div class="w-full lg:w-2/5 flex items-start justify-center p-4 md:p-6 lg:p-8 bg-white">
+    <div class="w-full lg:w-2/5 flex items-start justify-center p-4 md:p-6 lg:p-8 bg-white dark:bg-slate-900">
       <AuthCard :title="title" :subtitle="subtitle">
         <SignInForm v-if="auth.view === 'signin'" />
         <RegisterForm v-else-if="auth.view === 'register'" />

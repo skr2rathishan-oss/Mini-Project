@@ -58,7 +58,7 @@ watch(
   />
 
   <!-- Shipping/Payment -->
-  <div v-else class="min-h-screen w-full flex flex-col bg-white">
+  <div v-else class="min-h-screen w-full flex flex-col bg-white dark:bg-slate-900">
     <CheckoutHeader @cancel="onBack" />
 
     <div class="flex-1 flex flex-col lg:flex-row overflow-hidden">
@@ -71,7 +71,7 @@ watch(
       </div>
 
       <!-- Order Summary - Below on mobile, Right side on desktop -->
-      <div class="w-full lg:w-auto lg:flex-none px-4 lg:px-0 py-6 lg:py-10 lg:mr-8 border-t lg:border-t-0 lg:border-l border-slate-200">
+      <div class="w-full lg:w-auto lg:flex-none px-4 lg:px-0 py-6 lg:py-10 lg:mr-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-slate-700">
         <div class="max-w-sm mx-auto lg:max-w-md">
           <OrderSummary />
         </div>

@@ -39,30 +39,30 @@ async function submit() {
   <form class="space-y-4" @submit.prevent="submit">
     <!-- Login Input -->
     <div>
-      <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">Login</label>
+      <label class="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Login</label>
       <input
         v-model="login"
         type="text"
         placeholder="Email or phone number"
-        class="w-full bg-gray-100/80 border-none rounded-xl py-4 px-4 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all placeholder:text-gray-400 font-medium"
+        class="w-full bg-gray-100/80 dark:bg-slate-800 dark:text-slate-200 border-none rounded-xl py-4 px-4 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 font-medium"
       />
     </div>
 
     <!-- Password Input -->
     <div class="relative">
-      <label class="block text-[11px] font-bold text-gray-400 uppercase tracking-wider mb-2">Password</label>
+      <label class="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Password</label>
       <div class="relative">
         <input
           v-model="password"
           :type="showPassword ? 'text' : 'password'"
           placeholder="Enter password"
-          class="w-full bg-gray-100/80 border-none rounded-xl py-4 px-4 pr-12 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all placeholder:text-gray-400 font-medium"
+          class="w-full bg-gray-100/80 dark:bg-slate-800 dark:text-slate-200 border-none rounded-xl py-4 px-4 pr-12 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 font-medium"
         />
 
         <button
           type="button"
           @click="showPassword = !showPassword"
-          class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
+          class="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-400 transition-colors"
           aria-label="Toggle password visibility"
         >
           <!-- Eye / EyeOff (inline SVG) -->
@@ -120,7 +120,7 @@ async function submit() {
           type="button"
           @click="rememberMe = !rememberMe"
           class="w-10 h-5 rounded-full transition-colors relative flex items-center px-1"
-          :class="rememberMe ? 'bg-teal-600' : 'bg-gray-200'"
+          :class="rememberMe ? 'bg-teal-600' : 'bg-gray-200 dark:bg-slate-700'"
           aria-label="Remember me"
         >
           <div
@@ -128,12 +128,12 @@ async function submit() {
             :class="rememberMe ? 'translate-x-5' : 'translate-x-0'"
           ></div>
         </button>
-        <span class="text-xs font-bold text-gray-500">Remember me</span>
+        <span class="text-xs font-bold text-gray-500 dark:text-gray-400">Remember me</span>
       </div>
 
       <button
         type="button"
-        class="text-xs font-bold text-teal-600 hover:underline"
+        class="text-xs font-bold text-teal-600 dark:text-teal-400 hover:underline"
         @click="auth.setView('forgot')"
       >
         Forgot password?
@@ -152,9 +152,9 @@ async function submit() {
     <!-- Divider -->
     <div class="relative flex items-center justify-center py-6">
       <div class="absolute inset-0 flex items-center">
-        <div class="w-full border-t border-gray-100"></div>
+        <div class="w-full border-t border-gray-100 dark:border-slate-700"></div>
       </div>
-      <span class="relative bg-white px-4 text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+      <span class="relative bg-white dark:bg-slate-900 px-4 text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">
         Or sign in with
       </span>
     </div>
@@ -174,9 +174,9 @@ async function submit() {
     </button>
 
     <!-- Sign up link -->
-    <p class="mt-6 text-center text-xs font-bold text-gray-400">
+    <p class="mt-6 text-center text-xs font-bold text-gray-400 dark:text-gray-500">
       Don't have an account?
-      <button type="button" class="text-teal-600 hover:underline" @click="auth.setView('register')">
+      <button type="button" class="text-teal-600 dark:text-teal-400 hover:underline" @click="auth.setView('register')">
         Sign up now
       </button>
     </p>
