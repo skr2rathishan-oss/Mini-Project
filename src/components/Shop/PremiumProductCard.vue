@@ -16,7 +16,7 @@ const priceLKR = computed(() => (props.product.price * LKR_RATE).toLocaleString(
     <div class="relative">
       <button
         type="button"
-        class="relative aspect-square w-full overflow-hidden bg-slate-100 text-left cursor-pointer"
+        class="relative aspect-square w-full overflow-hidden bg-slate-100 dark:bg-slate-700 text-left cursor-pointer"
         @click="$emit('click', product)"
       >
         <img

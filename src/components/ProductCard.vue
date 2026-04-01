@@ -42,7 +42,7 @@ function addToCart() {
     </div>
 
     <!-- Image -->
-    <div class="aspect-square bg-white flex items-center justify-center overflow-hidden relative">
+    <div class="aspect-square bg-white dark:bg-slate-700 flex items-center justify-center overflow-hidden relative">
       <img
         :src="props.product.thumbnail"
         :alt="props.product.title"
