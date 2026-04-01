@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useUiStore } from './types/ui'
 import { useCartStore } from './stores/cartStore'
 import Navbar from './components/Navbar.vue'
@@ -10,6 +10,7 @@ import MobileBottomBar from "./components/MobileDesign/MobileBottomBar.vue";
 import MobileNavbar from "./components/MobileDesign/MobileNavbar.vue";
 
 const router = useRouter()
+const route = useRoute()
 const ui = useUiStore()
 const cart = useCartStore()
 const cartCount = computed(() => cart.selectedItems.reduce((sum, item) => sum + item.quantity, 0))
@@ -18,31 +19,37 @@ const onLogoClick = () => router.push('/')
 const onCartClick = () => ui.openCart()
 
 const onSearch = (q: string) => {
-  if (q.trim()) {
-    const currentRoute = router.currentRoute.value.name
-    if (currentRoute === 'Shop') {
-      // Stay on shop page but update search
-      router.push({ name: 'Shop', query: { q } })
-    } else {
-      // Go to home page with search
-      router.push({ name: 'home', query: { q } })
+  const trimmed = q.trim()
+  if (!trimmed) return
+
+  const baseQuery = route.name === 'shop' ? { ...route.query } : {}
+
+  router.push({
+    name: 'shop',
+    query: {
+      ...baseQuery,
+      q: trimmed
     }
-  }
+  })
 }
 
 const showFooter = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute !== 'Shop' && currentRoute !== 'auth' && currentRoute !== 'checkout'
+  const name = route.name
+  return name !== 'shop' && name !== 'auth' && name !== 'checkout'
 })
 
 const showNavbar = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute !== 'auth'
+  return route.name !== 'auth'
 })
 
 const hideMobileNavbarOnProductPage = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute === 'product' || currentRoute === 'mobileProductDetail'
+  const name = route.name
+  return name === 'productDetail' || name === 'mobileProductDetail'
+})
+
+const showMobileSearch = computed(() => {
+  const name = route.name
+  return name === 'home' || name === 'shop'
 })
 
 </script>
@@ -58,6 +65,8 @@ const hideMobileNavbarOnProductPage = computed(() => {
 
   <MobileNavbar
   :class="hideMobileNavbarOnProductPage ? 'hidden lg:block' : 'block lg:hidden'"
+    @search="onSearch"
+    :showSearch="showMobileSearch"
 />
 
 

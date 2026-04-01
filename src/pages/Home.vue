@@ -8,6 +8,7 @@ import HeroSlider from '../components/HeroSlider.vue'
 import MobileHeroSlide from '../components/MobileDesign/MobileHeroSlide.vue'
 import type { HeroSlide } from '../types/ui'
 import { getProductDetailView } from '../utils/deviceDetect'
+import newYearBg from '../assets/images/new_year_offer_bg.png'
 
 const route = useRoute()
 const router = useRouter()
@@ -153,23 +154,12 @@ const filterByBrand = (brand: string) => {
     <!-- ROW 1 — HERO SLIDER -->
     <section>
       <!-- Mobile Hero Slider -->
-      <MobileHeroSlide
-        v-if="slides.length"
-        class="lg:hidden"
-        :slides="slides"
-        @dotClick="onDotClick"
-        @slideClick="onHeroClick"
-      />
+      <MobileHeroSlide v-if="slides.length" class="lg:hidden" :slides="slides" @dotClick="onDotClick"
+        @slideClick="onHeroClick" />
 
       <!-- Desktop Hero Slider -->
-      <HeroSlider
-        v-if="slides.length"
-        class="hidden lg:block"
-        :slides="slides"
-        :currentSlide="currentSlide"
-        @dotClick="onDotClick"
-        @slideClick="onHeroClick"
-      />
+      <HeroSlider v-if="slides.length" class="hidden lg:block" :slides="slides" :currentSlide="currentSlide"
+        @dotClick="onDotClick" @slideClick="onHeroClick" />
     </section>
 
     <!-- ROW 2 — CATEGORIES -->
@@ -184,8 +174,8 @@ const filterByBrand = (brand: string) => {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         <div v-for="category in categories" :key="category.name"
-             class="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-md transition-shadow cursor-pointer"
-             @click="filterByCategory(category.name)">
+          class="bg-white border border-gray-200 rounded-lg p-6 text-center hover:shadow-md transition-shadow cursor-pointer"
+          @click="filterByCategory(category.name)">
           <div class="w-12 h-12 mx-auto mb-3 bg-teal-100 rounded-full flex items-center justify-center">
             <i :class="category.icon" class="text-teal-600 text-xl"></i>
           </div>
@@ -220,11 +210,14 @@ const filterByBrand = (brand: string) => {
           View All →
         </button>
       </div>
-      <div class="bg-gradient-to-r from-teal-500 to-teal-600 rounded-2xl p-8 text-white">
-        <div class="max-w-2xl">
-          <h3 class="text-2xl font-bold mb-2">🎉 Special New Year Discounts!</h3>
-          <p class="text-teal-100 mb-4">Get up to 50% off on selected items. Limited time offer!</p>
-          <button @click="goToShop" class="bg-white text-teal-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors">
+      <div class="rounded-2xl p-8 text-white relative overflow-hidden bg-cover bg-center shadow-lg"
+        :style="{ backgroundImage: `linear-gradient(to right, rgba(13, 148, 136, 0.8), rgba(0, 0, 0, 0.0)), url(${newYearBg})` }">
+        <div class="max-w-2xl relative z-10">
+          <h3 class="text-3xl font-extrabold mb-3 text-white drop-shadow-md">🎉 Special New Year Discounts!</h3>
+          <p class="text-teal-50 mb-6 font-medium text-lg drop-shadow">Get up to 50% off on selected items. Limited time
+            offer!</p>
+          <button @click="goToShop"
+            class="bg-white text-teal-700 px-8 py-3 rounded-full font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
             Shop Now →
           </button>
         </div>
@@ -246,8 +239,8 @@ const filterByBrand = (brand: string) => {
       </div>
       <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
         <div v-for="brand in featuredBrands" :key="brand"
-             class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center hover:bg-gray-100 transition-colors cursor-pointer"
-             @click="filterByBrand(brand)">
+          class="bg-gray-50 border border-gray-200 rounded-lg p-4 text-center hover:bg-gray-100 transition-colors cursor-pointer"
+          @click="filterByBrand(brand)">
           <h4 class="font-semibold text-gray-800">{{ brand }}</h4>
         </div>
       </div>

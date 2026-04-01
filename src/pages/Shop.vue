@@ -25,9 +25,10 @@ const minPrice = ref<string>("");
 const maxPrice = ref<string>("");
 
 /* Scroll to products */
-const productsSectionRef = ref<HTMLElement | null>(null);
-// Dummy use to avoid unused warning
-void productsSectionRef;
+
+// Static categories and brands populated after fetch
+const categoriesList = ref<string[]>(['all']);
+const brandsList = ref<string[]>(['all']);
 
 // Static categories and brands populated after fetch
 const categoriesList = ref<string[]>(['all']);

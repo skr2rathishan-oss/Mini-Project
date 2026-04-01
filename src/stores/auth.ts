@@ -14,8 +14,13 @@ export const useAuthStore = defineStore("auth", {
       this.view = v;
     },
 
-    signIn(email: string, _password: string) {
-      // demo login (later connect backend) - password not used in demo
+    signIn(email: string, password: string) {
+      if (!email || !password) {
+        throw new Error("Email and password are required");
+      }
+      if (password.length < 6) {
+        throw new Error("Password must be at least 6 characters");
+      }
       this.isLoggedIn = true;
       this.user = { name: "Customer", email };
     },
