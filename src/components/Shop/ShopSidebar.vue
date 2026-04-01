@@ -141,18 +141,18 @@ const emit = defineEmits<{
       </div>
 
       <!-- Banner -->
-      <div class="bg-slate-900 rounded-2xl p-6 text-white overflow-hidden relative group">
+      <div class="bg-slate-900 rounded-xl p-3 text-white overflow-hidden relative group -mt-4">
         <div class="relative z-10">
-          <h3 class="font-bold text-lg mb-2">Member Rewards</h3>
-          <p class="text-slate-400 text-xs mb-4">Get 10% cash back on your first premium purchase.</p>
+          <h3 class="font-bold text-sm mb-1">Member Rewards</h3>
+          <p class="text-slate-400 text-[10px] mb-2">Get 10% cash back on your first premium purchase.</p>
           <button
             type="button"
-            class="text-xs font-bold text-teal-400 hover:text-teal-300 transition-colors uppercase tracking-widest"
+            class="text-[10px] font-bold text-teal-400 hover:text-teal-300 transition-colors uppercase tracking-widest"
           >
             Join Now →
           </button>
         </div>
-        <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-teal-500/10 rounded-full blur-2xl"></div>
+        <div class="absolute -right-3 -bottom-2 w-14 h-14 bg-teal-500/10 rounded-full blur-xl"></div>
       </div>
     </div>
   </aside>
