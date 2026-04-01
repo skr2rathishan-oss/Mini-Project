@@ -115,7 +115,7 @@ function onAddToCart(product: Product) {
 </script>
 
 <template>
-  <div class="min-h-screen bg-white mt-0">
+  <div class="min-h-screen bg-white dark:bg-slate-900 mt-0 transition-colors duration-300">
     <main class="max-w-[1440px] mx-auto px-3 lg:px-6 pb-2 pt-0 mt-0">
       <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 pt-0 mt-0 lg:pt-8">
         <!-- Fixed Sidebar (desktop) -->
