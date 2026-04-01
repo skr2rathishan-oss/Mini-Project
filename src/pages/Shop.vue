@@ -32,7 +32,7 @@ const brandsList = ref<string[]>(['all']);
 
 async function loadProducts() {
   loading.value = true;
-  error.value = "";
+  products.value = [];
 
   try {
     const rawQ = route.query.q;

@@ -1,5 +1,6 @@
 <template>
   <div class="hidden lg:block w-full border-t border-gray-200"></div>
+
   <footer id="site-footer" class="hidden lg:block bg-white pt-20 pb-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
@@ -106,7 +107,7 @@ import { ShoppingBag, Instagram, Twitter, Facebook, ArrowRight } from "lucide-vu
 
 type SocialItem = {
   label: string;
-  icon: import('vue').Component; // lucide components are valid Vue components
+  icon: import("vue").Component;
 };
 
 const shopLinks = ["Beauty Collection", "Skincare Rituals", "Exclusive Deals", "Gift Cards", "New Arrivals"];
@@ -126,7 +127,6 @@ function handleSubscribe() {
     status.value = "Please enter your email.";
     return;
   }
-  // TODO: connect to your API
   status.value = `Thanks! We'll reach out to ${email.value}.`;
   email.value = "";
 }
