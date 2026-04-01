@@ -2,7 +2,7 @@
 import { onMounted, watch } from "vue";
 import { useRouter } from "vue-router";
 import { useCheckoutStore } from "@/stores/checkout";
-import { useCartStore } from "@/types/cart";
+import { useCartStore } from "@/stores/cartStore";
 
 import CheckoutHeader from "../components/Checkout/CheckoutHeader.vue";
 import CheckoutShipping from "../components/Checkout/CheckoutShipping.vue";
@@ -31,12 +31,23 @@ onMounted(() => {
   }
 });
 
-// Watch for cart selected items changes and update checkout (only in cart mode)
-watch(() => cart.selectedItems, (newItems) => {
-  if (checkout.mode === "cart" && newItems.length > 0) {
-    checkout.setItems(newItems.map(item => ({ ...item.product, name: item.product.title, image: item.product.thumbnail, quantity: item.quantity })));
+// Watch for underlying cart counts and update seamlessly
+watch(
+  () => [cart.selectedItems.length, cart.subtotal],
+  () => {
+    const newItems = cart.selectedItems;
+    if (checkout.mode === "cart" && newItems.length > 0) {
+      checkout.setItems(
+        newItems.map((item) => ({
+          ...item.product,
+          name: item.product.title,
+          image: item.product.thumbnail,
+          quantity: item.quantity,
+        }))
+      );
+    }
   }
-}, { deep: true });
+);
 </script>
 
 <template>

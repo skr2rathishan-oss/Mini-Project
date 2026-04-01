@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from "vue";
-
-type CartItem = any; // replace later with your type
+import type { CartItem } from "../../types/cart";
 
 const props = defineProps<{
   items: CartItem[];

@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useRouter } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import { useUiStore } from './types/ui'
-import { useCartStore } from './types/cart'
+import { useCartStore } from './stores/cartStore'
 import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer..vue'
+import Footer from './components/Footer.vue'
 import CartDrawer from "./components/Cart/CartDrawer.vue";
 import MobileBottomBar from "./components/MobileDesign/MobileBottomBar.vue";
 import MobileNavbar from "./components/MobileDesign/MobileNavbar.vue";
 
 const router = useRouter()
+const route = useRoute()
 const ui = useUiStore()
 const cart = useCartStore()
 const cartCount = computed(() => cart.selectedItems.reduce((sum, item) => sum + item.quantity, 0))
@@ -21,8 +22,7 @@ const onSearch = (q: string) => {
   const trimmed = q.trim()
   if (!trimmed) return
 
-  const currentRoute = router.currentRoute.value
-  const baseQuery = currentRoute.name === 'shop' ? { ...currentRoute.query } : {}
+  const baseQuery = route.name === 'shop' ? { ...route.query } : {}
 
   router.push({
     name: 'shop',
@@ -34,23 +34,22 @@ const onSearch = (q: string) => {
 }
 
 const showFooter = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute !== 'shop' && currentRoute !== 'auth' && currentRoute !== 'checkout'
+  const name = route.name
+  return name !== 'shop' && name !== 'auth' && name !== 'checkout'
 })
 
 const showNavbar = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute !== 'auth'
+  return route.name !== 'auth'
 })
 
 const hideMobileNavbarOnProductPage = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute === 'productDetail' || currentRoute === 'mobileProductDetail'
+  const name = route.name
+  return name === 'productDetail' || name === 'mobileProductDetail'
 })
 
 const showMobileSearch = computed(() => {
-  const currentRoute = router.currentRoute.value.name
-  return currentRoute === 'home' || currentRoute === 'shop'
+  const name = route.name
+  return name === 'home' || name === 'shop'
 })
 
 </script>
