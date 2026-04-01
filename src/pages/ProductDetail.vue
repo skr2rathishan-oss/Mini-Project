@@ -1,107 +1,41 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-
-import type { Product } from '../types/product'
-import { fetchProductById, fetchProducts } from '../services/api'
-import { useCartStore } from '../stores/cartStore'
-import { useCheckoutStore } from '../stores/checkout'
 import { getProductDetailView } from '../utils/deviceDetect'
-
+import { useProductDetail } from '../composables/useProductDetail'
 import ProductInfo from '../components/ProductInfo.vue'
+import { LKR_RATE } from '../constants/currency'
 
 const route = useRoute()
 const router = useRouter()
-const cart = useCartStore()
-const checkout = useCheckoutStore()
 
-const loading = ref(true)
-const error = ref('')
-const product = ref<Product | null>(null)
-
-const relatedProducts = ref<Product[]>([])
-const activeImage = ref('')
-
-const selectedColor = ref<string>('')
-
-const LKR_RATE = 300
-
-const priceLKR = computed(() => {
-  if (!product.value) return ''
-  return (product.value.price * LKR_RATE).toLocaleString()
-})
-
-function onAddToCart(p: Product) {
-  cart.add(p)
-  console.log('Added to cart:', p)
-}
-function onBuyNow(p: Product) {
-  // Build Buy Now item from product
-  const buyNowItem = {
-    id: p.id,
-    name: p.title,
-    price: p.price * LKR_RATE, // Convert to LKR
-    quantity: 1,
-    image: p.thumbnail || p.images?.[0] || ''
-  }
-  
-  // Set checkout store with Buy Now mode
-  checkout.setBuyNowItem(buyNowItem)
-  router.push('/checkout')
-  console.log('Buy now:', buyNowItem)
-}
-function onWishlist() {
-  console.log('Wishlist clicked')
-}
+const {
+  loading,
+  error,
+  product,
+  relatedProducts,
+  activeImage,
+  selectedColor,
+  priceLKR,
+  onAddToCart,
+  onBuyNow,
+  onWishlist,
+  load
+} = useProductDetail()
 
 function onRelatedProductClick(productId: number) {
   router.push(getProductDetailView(productId))
 }
 
-async function load(id: number) {
-  loading.value = true
-  error.value = ''
-
-  try {
-    const p = await fetchProductById(id)
-    product.value = p
-
-    activeImage.value = p.images?.[0] || p.thumbnail || ''
-
-    // pick default color if exists
-    const colors = (p as any).colors as string[] | undefined
-    selectedColor.value = colors?.[0] || ''
-
-    // related
-    const list = await fetchProducts(50)
-    relatedProducts.value = (list.products || [])
-      .filter((x: Product) => x.id !== id)
-      .slice(0, 3)
-  } catch (e: any) {
-    error.value = e?.message || 'Something went wrong'
-  } finally {
-    loading.value = false
-  }
-}
-
 onMounted(() => {
   const id = Number(route.params.id)
-  if (!Number.isFinite(id)) {
-    error.value = 'Invalid product id'
-    loading.value = false
-    return
-  }
-  void load(id)
+  if (Number.isFinite(id)) void load(id)
 })
 
-watch(
-  () => route.params.id,
-  (newId) => {
-    const id = Number(newId)
-    if (!Number.isFinite(id)) return
-    void load(id)
-  }
-)
+watch(() => route.params.id, (newId) => {
+  const id = Number(newId)
+  if (Number.isFinite(id)) void load(id)
+})
 </script>
 
 <template>

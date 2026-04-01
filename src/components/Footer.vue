@@ -106,7 +106,7 @@ import { ShoppingBag, Instagram, Twitter, Facebook, ArrowRight } from "lucide-vu
 
 type SocialItem = {
   label: string;
-  icon: any; // lucide components are valid Vue components
+  icon: import('vue').Component; // lucide components are valid Vue components
 };
 
 const shopLinks = ["Beauty Collection", "Skincare Rituals", "Exclusive Deals", "Gift Cards", "New Arrivals"];

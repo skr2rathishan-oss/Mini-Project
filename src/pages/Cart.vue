@@ -46,7 +46,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { useCartStore } from '../types/cart'
+import { useCartStore } from '../stores/cartStore'
 import { computed } from 'vue'
 import CartDrawerBody from '../components/Cart/CartDrawerBody.vue'
 import CartDrawerFooter from '../components/Cart/CartDrawerFooter.vue'
