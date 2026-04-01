@@ -23,8 +23,8 @@ function toggle() {
   >
     <!-- Label -->
     <div class="flex items-center gap-2">
-      <span class="text-sm font-semibold text-slate-800 dark:text-slate-100">Theme</span>
-      <span class="text-xs text-slate-400 dark:text-slate-400">
+      <span class="text-sm font-semibold text-slate-800 dark:text-white">Theme</span>
+      <span class="text-xs text-slate-400 dark:text-white">
         {{ isDark ? "Dark" : "Light" }}
       </span>
     </div>

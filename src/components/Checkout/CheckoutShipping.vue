@@ -28,9 +28,9 @@ function onNext() {
 </script>
 
 <template>
-  <div class="animate-in slide-in-from-left-4 duration-500 flex flex-col">
+  <div class="animate-in slide-in-from-left-4 duration-500 flex flex-col h-full">
     <!-- Header -->
-    <div class="flex items-center gap-2 lg:gap-3 mb-4 lg:mb-6">
+    <div class="flex items-center gap-2 lg:gap-3 mb-4 lg:mb-3.5 lg:mt-4">
       <div class="w-7 lg:w-8 h-7 lg:h-8 bg-teal-50 dark:bg-teal-900/30 rounded-lg flex items-center justify-center text-teal-600 dark:text-teal-400 text-sm lg:text-base">
         <i class="fa-solid fa-truck"></i>
       </div>
@@ -38,7 +38,7 @@ function onNext() {
     </div>
 
     <!-- Inputs -->
-    <div class="grid grid-cols-2 gap-x-3 lg:gap-x-4 gap-y-2 lg:gap-y-3 mb-6">
+    <div class="grid grid-cols-2 gap-x-3 lg:gap-x-6 gap-y-3 lg:gap-y-3.5 mb-4 lg:mb-4">
       <div class="col-span-2">
         <input
           type="text"
@@ -77,24 +77,24 @@ function onNext() {
     </div>
 
     <!-- Delivery Options -->
-    <div class="mb-4 lg:mb-6">
-      <label class="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2 lg:mb-3 block">
+    <div class="mb-4 lg:mb-3.5">
+      <label class="text-[9px] lg:text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-2 lg:mb-2 block">
         Delivery Options
       </label>
 
-      <div class="space-y-1.5 lg:space-y-2">
+      <div class="space-y-2 lg:space-y-2">
         <div
           v-for="option in SHIPPING_OPTIONS"
           :key="option.id"
           @click="setSelectedShipping(option)"
-          class="flex items-center justify-between p-2 lg:p-3 rounded-xl border-2 cursor-pointer transition-all"
+          class="flex items-center justify-between p-2 lg:p-2 rounded-xl border-2 cursor-pointer transition-all"
           :class="selectedShipping.id === option.id
             ? 'border-teal-600 bg-teal-50/20 dark:bg-teal-900/20'
             : 'border-slate-100 dark:border-slate-700 bg-slate-50/30 dark:bg-slate-800/30 hover:bg-slate-50 dark:hover:bg-slate-800/50'"
         >
           <div class="flex items-center gap-2 lg:gap-3">
             <div
-              class="w-8 lg:w-10 h-8 lg:h-10 rounded-lg flex items-center justify-center transition-colors text-xs lg:text-sm"
+              class="w-8 lg:w-9 h-8 lg:h-9 rounded-lg flex items-center justify-center transition-colors text-xs lg:text-sm"
               :class="selectedShipping.id === option.id ? 'bg-teal-600 text-white' : 'bg-slate-200 dark:bg-slate-700 text-slate-500 dark:text-slate-400'"
             >
               <i :class="`fa-solid fa-${option.icon}`"></i>
@@ -125,7 +125,7 @@ function onNext() {
     <!-- Next button -->
     <button
       @click="onNext"
-      class="w-full py-2 lg:py-4 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-2xl shadow-xl shadow-teal-600/10 transition-all flex items-center justify-center gap-2 lg:gap-3 text-xs lg:text-sm"
+      class="w-full py-2 lg:py-3 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-2xl shadow-xl shadow-teal-600/10 transition-all flex items-center justify-center gap-2 lg:gap-3 text-xs lg:text-sm mt-auto"
     >
       Proceed to Payment
       <i class="fa-solid fa-chevron-right text-[8px] lg:text-[10px]"></i>

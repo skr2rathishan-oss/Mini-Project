@@ -49,7 +49,7 @@ onUnmounted(() => {
     >
       <div class="px-3 py-2">
         <p class="text-sm font-black text-slate-900 dark:text-white">Account</p>
-        <p class="text-xs text-slate-400 dark:text-slate-500">Manage your profile & orders</p>
+        <p class="text-xs text-slate-400 dark:text-white">Manage your profile & orders</p>
       </div>
 
       <div class="h-px bg-slate-100 dark:bg-slate-700 my-2"></div>
@@ -81,7 +81,7 @@ onUnmounted(() => {
   background: rgb(248 250 252);
 }
 :global(.dark) .menuItem {
-  color: rgb(203 213 225);
+  color: rgb(255 255 255) !important;
 }
 :global(.dark) .menuItem:hover {
   background: rgb(51 65 85);
