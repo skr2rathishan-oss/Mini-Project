@@ -91,7 +91,7 @@ Follow these steps to safely run the application locally on your machine.
 
 ---
 
-## 🎓 CS3404 Learning Outcomes Achieved
+## 🎓Learning Outcomes Achieved
 
 - **Strictly Typed Front-End Architecture**: Successfully enforced complex TS interfaces over external REST payloads avoiding `unknown` and `any` casting mappings.
 - **Component State and Props Tracking**: Managed parent-to-child data flows via `defineProps` and securely emitted events up utilizing `defineEmits`.
@@ -101,5 +101,5 @@ Follow these steps to safely run the application locally on your machine.
 ---
 
 <div align="center">
-  <p>Made with ❤️ for the CS3404 University Mini-Project</p>
+  <p>Made with ❤️ for the CS3404 GuiPrgrammming University of Ruhuna Faculty of Engineering Mini-Project</p>
 </div>
