@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, watch } from "vue";
 import { useUiStore } from "../../types/ui";
-import { useCartStore } from "../../types/cart";
+import { useCartStore } from "../../stores/cartStore";
 
 import CartDrawerHeader from "./CartDrawerHeader.vue";
 import CartDrawerBody from "./CartDrawerBody.vue";
@@ -9,8 +9,7 @@ import CartDrawerFooter from "./CartDrawerFooter.vue";
 
 const ui = useUiStore();
 const cart = useCartStore();
-
-const LKR_RATE = 300;
+import { LKR_RATE } from "../../constants/currency";
 
 /** UI state */
 const isOpen = computed(() => ui.isCartOpen);

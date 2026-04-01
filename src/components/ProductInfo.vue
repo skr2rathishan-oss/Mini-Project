@@ -27,7 +27,7 @@ const filledStars = computed(() => Math.floor(props.product.rating ?? 0))
       </span>
       <span class="text-slate-300">•</span>
       <span class="text-xs font-semibold text-slate-400 uppercase tracking-widest">
-        {{ (product as any).subCategory ?? '—' }}
+        {{ product.subCategory ?? '—' }}
       </span>
     </div>
 
@@ -54,7 +54,7 @@ const filledStars = computed(() => Math.floor(props.product.rating ?? 0))
       <span class="text-sm font-bold text-slate-900">{{ product.rating }}</span>
       <span class="text-slate-300">/</span>
       <span class="text-sm font-semibold text-slate-400 tracking-tight">
-        {{ (product as any).reviews?.length ?? 0 }} Reviews <!-- Fix: Use .length to get the count -->
+        {{ product.reviews?.length ?? 0 }} Reviews <!-- Fix: Use .length to get the count -->
       </span>
     </div>
 
@@ -64,13 +64,13 @@ const filledStars = computed(() => Math.floor(props.product.rating ?? 0))
     </p>
 
     <!-- Colors -->
-    <div class="mb-10" v-if="(product as any).colors?.length">
+    <div class="mb-10" v-if="product.colors?.length">
       <label class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 block">
         Select Finish Tone
       </label>
 
       <div class="flex gap-4">
-        <button v-for="color in (product as any).colors" :key="color" type="button"
+        <button v-for="color in product.colors" :key="color" type="button"
           @click="emit('update:selectedColor', color)"
           class="w-12 h-12 rounded-full border-4 transition-all flex items-center justify-center p-0.5" :class="props.selectedColor === color
             ? 'border-teal-500 scale-110 shadow-xl'

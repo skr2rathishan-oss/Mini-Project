@@ -29,18 +29,34 @@ const productsSectionRef = ref<HTMLElement | null>(null);
 // Dummy use to avoid unused warning
 void productsSectionRef;
 
+// Static categories and brands populated after fetch
+const categoriesList = ref<string[]>(['all']);
+const brandsList = ref<string[]>(['all']);
+
 async function loadProducts() {
   loading.value = true;
-  error.value = "";
+  products.value = [];
 
   try {
-    const q = (route.query.q as string | undefined) ?? '';
-    const categoryParam = (route.query.category as string | undefined) ?? '';
-    const brandParam = (route.query.brand as string | undefined) ?? '';
+    const rawQ = route.query.q;
+    const q = Array.isArray(rawQ) ? String(rawQ[0]) : (rawQ ?? '');
+    
+    const rawCat = route.query.category;
+    const categoryParam = Array.isArray(rawCat) ? String(rawCat[0]) : (rawCat ?? '');
+    
+    const rawBrand = route.query.brand;
+    const brandParam = Array.isArray(rawBrand) ? String(rawBrand[0]) : (rawBrand ?? '');
 
     // If there's a search query, use search endpoint
     const res = q ? await searchProducts(q) : await fetchProducts(194);
     products.value = res.products;
+
+    // Calculate static filters O(N) only once per load
+    const catSet = new Set(res.products.map(p => p.category));
+    categoriesList.value = ["all", ...Array.from(catSet)];
+
+    const brandSet = new Set(res.products.map(p => p.brand).filter((b): b is string => Boolean(b)));
+    brandsList.value = ["all", ...Array.from(brandSet)];
 
     // Set filters from URL parameters
     if (categoryParam && categoryParam !== 'all') {
@@ -64,24 +80,17 @@ watch(() => route.query, () => {
   loadProducts();
 }, { deep: true });
 
-/* Categories from products */
-const categories = computed(() => {
-  const set = new Set(products.value.map((p) => p.category));
-  return ["all", ...Array.from(set)];
-});
-
-/* Brands */
-const brands = computed(() => {
-  const set = new Set(products.value.map((p) => p.brand).filter((b): b is string => Boolean(b)));
-  return ["all", ...Array.from(set)];
-});
-
-/* Brands (removed) */
+/* Expose lists to template */
+const categories = computed(() => categoriesList.value);
+const brands = computed(() => brandsList.value);
 
 /* Filtering */
 const filteredProducts = computed(() => {
-  const min = minPrice.value ? Number(minPrice.value) : null;
-  const max = maxPrice.value ? Number(maxPrice.value) : null;
+  const parsedMin = parseFloat(minPrice.value);
+  const min = !isNaN(parsedMin) ? parsedMin : null;
+  
+  const parsedMax = parseFloat(maxPrice.value);
+  const max = !isNaN(parsedMax) ? parsedMax : null;
 
   return products.value.filter((p) => {
     if (selectedCategory.value !== "all" && p.category !== selectedCategory.value) return false;

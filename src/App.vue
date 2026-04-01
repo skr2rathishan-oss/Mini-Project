@@ -2,9 +2,9 @@
 import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUiStore } from './types/ui'
-import { useCartStore } from './types/cart'
+import { useCartStore } from './stores/cartStore'
 import Navbar from './components/Navbar.vue'
-import Footer from './components/Footer..vue'
+import Footer from './components/Footer.vue'
 import CartDrawer from "./components/Cart/CartDrawer.vue";
 import MobileBottomBar from "./components/MobileDesign/MobileBottomBar.vue";
 import MobileNavbar from "./components/MobileDesign/MobileNavbar.vue";

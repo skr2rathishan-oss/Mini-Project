@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { useCheckoutStore } from "@/stores/checkout";
-import { SHIPPING_OPTIONS } from "../../constants/shipping";
+import { SHIPPING_OPTIONS, type ShippingOption } from "../../constants/shipping";
 
 const checkout = useCheckoutStore();
 
 const selectedShipping = computed(() => checkout.selectedShipping);
 
-function setSelectedShipping(option: any) {
+function setSelectedShipping(option: ShippingOption) {
   checkout.selectedShipping = option;
 }
 

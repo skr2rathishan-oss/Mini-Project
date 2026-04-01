@@ -68,9 +68,7 @@ const slides = ref<HeroSlide[]>([])
 const currentSlide = ref(0)
 
 const bgList = ['bg-teal-600']
-
-
-const LKR_RATE = 300 
+import { LKR_RATE } from '../constants/currency'
 
 function toSlide(p: Product, index: number): HeroSlide {
   const discountBadge =

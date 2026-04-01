@@ -27,8 +27,8 @@ async function submit() {
     // If not using redirectAfterLogin, just go home.
     // @ts-ignore
     router.push(auth.redirectAfterLogin || "/");
-  } catch (e: any) {
-    error.value = e?.message ?? "Sign in failed";
+  } catch (e: unknown) {
+    error.value = e instanceof Error ? e.message : "Sign in failed";
   } finally {
     loading.value = false;
   }

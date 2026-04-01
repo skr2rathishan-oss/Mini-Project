@@ -100,12 +100,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, type Component } from "vue";
 import { ShoppingBag, Instagram, Twitter, Facebook, ArrowRight } from "lucide-vue-next";
 
 type SocialItem = {
   label: string;
-  icon: any; // lucide components are valid Vue components
+  icon: Component;
 };
 
 const shopLinks = ["Beauty Collection", "Skincare Rituals", "Exclusive Deals", "Gift Cards", "New Arrivals"];
