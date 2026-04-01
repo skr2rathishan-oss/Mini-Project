@@ -228,7 +228,7 @@ const filterByBrand = (brand: string) => {
     </section>
 
     <!-- ROW 5 — FEATURED BRANDS -->
-    <section class="container mx-auto px-4">
+    <section class="container mx-auto px-4 pb-10">
       <div class="flex items-center justify-between border-b border-gray-200 dark:border-slate-700 pb-3 mb-6">
         <h2 class="text-xl md:text-3xl font-bold text-gray-800 dark:text-white tracking-tight uppercase">
           Featured <span class="text-teal-500 font-semibold">Brands</span>

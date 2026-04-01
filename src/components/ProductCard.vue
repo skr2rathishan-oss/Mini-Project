@@ -26,8 +26,8 @@ function addToCart() {
   <button
     type="button"
     @click="emit('click', props.product)"
-    class="group relative w-full text-left bg-white
-           border border-gray-100 rounded-md overflow-hidden shadow-sm
+    class="group relative w-full text-left bg-white dark:bg-slate-800
+           border border-gray-100 dark:border-slate-700 rounded-md overflow-hidden shadow-sm
            cursor-pointer
            transition-all duration-300 ease-out
            hover:-translate-y-0.5 hover:shadow-md hover:border-teal-600/40
@@ -59,14 +59,14 @@ function addToCart() {
     </div>
 
     <!-- Info -->
-    <div class="p-2 flex flex-col grow bg-white">
+    <div class="p-2 flex flex-col grow bg-white dark:bg-slate-800">
       <!-- Title -->
       <div class="mb-1 h-8 overflow-hidden">
         <span class="inline-flex items-center bg-teal-600 text-white text-[10px] px-1 rounded-sm mr-1 font-bold">
           Preferred
         </span>
 
-        <h3 class="inline text-[12px] text-gray-800 line-clamp-2 leading-tight">
+        <h3 class="inline text-[12px] text-gray-800 dark:text-slate-100 line-clamp-2 leading-tight">
           {{ props.product.title }}
         </h3>
       </div>
@@ -78,7 +78,7 @@ function addToCart() {
           <span class="text-sm font-bold">{{ priceLKR }}</span>
         </div>
 
-        <span class="text-[12px] text-gray-400">
+        <span class="text-[12px] text-gray-400 dark:text-slate-400">
           {{ soldText }}
         </span>
       </div>

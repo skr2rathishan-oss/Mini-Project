@@ -10,7 +10,7 @@
             <div class="w-8 h-8 bg-teal-600 rounded-lg flex items-center justify-center shadow-md">
               <ShoppingBag class="text-white w-5 h-5" />
             </div>
-            <span class="text-xl font-black tracking-tighter text-gray-900">
+            <span class="text-xl font-black tracking-tighter text-gray-900 dark:text-white">
               SHOP<span class="text-teal-600">NET</span>
             </span>
           </div>
@@ -58,9 +58,9 @@
         </div>
 
         <!-- Newsletter -->
-        <div class="bg-teal-50/50 p-8 rounded-3xl border border-teal-100/50">
-          <h4 class="font-bold text-gray-900 mb-2">Join the Club</h4>
-          <p class="text-sm text-gray-500 mb-6">
+        <div class="bg-teal-50/50 dark:bg-slate-800 p-8 rounded-3xl border border-teal-100/50 dark:border-teal-600/30 dark:shadow-lg dark:shadow-teal-900/20">
+          <h4 class="font-bold text-gray-900 dark:text-white mb-2">Join the Club</h4>
+          <p class="text-sm text-gray-500 dark:text-slate-400 mb-6">
             Get 15% off your first order and exclusive access to launches.
           </p>
 
@@ -69,7 +69,7 @@
               v-model="email"
               type="email"
               placeholder="email@example.com"
-              class="w-full bg-white border border-gray-200 rounded-xl py-3 pl-4 pr-12 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
+              class="w-full bg-white dark:bg-slate-700 border border-gray-200 dark:border-slate-600 dark:text-slate-100 dark:placeholder-slate-400 rounded-xl py-3 pl-4 pr-12 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all"
             />
             <button
               type="button"
@@ -81,7 +81,7 @@
             </button>
           </div>
 
-          <p v-if="status" class="mt-3 text-xs text-gray-500">
+          <p v-if="status" class="mt-3 text-xs text-gray-500 dark:text-slate-400">
             {{ status }}
           </p>
         </div>
