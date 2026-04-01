@@ -160,22 +160,12 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import type { HeroSlide } from '../types/ui'
 
 const router = useRouter()
 
 function goToShop() {
   router.push('/shop')
-}
-
-/* ---------------- TYPES ---------------- */
-export interface HeroSlide {
-  id: number
-  badge: string
-  title: string
-  price: string
-  image: string
-  bgColor: string
-  productId: number
 }
 
 /* ---------------- PROPS ---------------- */
@@ -202,8 +192,6 @@ const titleSecondLine = (title: string) => {
   if (parts.length <= 1) return ''
   return parts.slice(Math.ceil(parts.length / 2)).join(' ')
 }
-
-void props
 </script>
 
 <style scoped>

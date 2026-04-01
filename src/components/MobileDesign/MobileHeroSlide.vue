@@ -1,17 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref, watch } from "vue";
 import { useRouter } from "vue-router";
-
-/* Same type as desktop */
-export interface HeroSlide {
-    id: number;
-    badge: string;
-    title: string;
-    price: string;
-    image: string;
-    bgColor: string;
-    productId: number;
-}
+import type { HeroSlide } from '../../types/ui'
 
 const props = defineProps<{
     slides: HeroSlide[];
@@ -123,7 +113,7 @@ onBeforeUnmount(stop);
                 class="absolute inset-0 transition-opacity duration-1000 flex items-center"
                 :class="index === current ? 'opacity-100' : 'opacity-0'">
                 <!-- Gradient overlay -->
-                <div class="absolute inset-0 bg-gradient-to-r from-teal-900 via-teal-900/40 to-transparent z-10" />
+                <div class="absolute inset-0 bg-linear-to-r from-teal-900 via-teal-900/40 to-transparent z-10" />
 
                 <!-- Background image -->
 

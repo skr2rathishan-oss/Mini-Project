@@ -73,9 +73,21 @@ async function loadProducts() {
 onMounted(loadProducts);
 
 // Watch for route changes (search, category, brand parameters)
-watch(() => route.query, () => {
+watch(() => route.query.q, () => {
   loadProducts();
-}, { deep: true });
+});
+
+watch(() => route.query.category, (val) => {
+  const v = Array.isArray(val) ? String(val[0]) : (val ?? '');
+  if (v && v !== 'all') selectedCategory.value = v;
+  else selectedCategory.value = 'all';
+});
+
+watch(() => route.query.brand, (val) => {
+  const v = Array.isArray(val) ? String(val[0]) : (val ?? '');
+  if (v && v !== 'all') selectedBrand.value = v;
+  else selectedBrand.value = 'all';
+});
 
 /* Expose lists to template */
 const categories = computed(() => categoriesList.value);
@@ -116,7 +128,7 @@ function onAddToCart(product: Product) {
 
 <template>
   <div class="min-h-screen bg-white dark:bg-slate-900 mt-0 transition-colors duration-300">
-    <main class="max-w-[1440px] mx-auto px-3 lg:px-6 pb-2 pt-0 mt-0">
+    <main class="max-w-360 mx-auto px-3 lg:px-6 pb-2 pt-0 mt-0">
       <div class="flex flex-col lg:flex-row gap-8 lg:gap-16 pt-0 mt-0 lg:pt-8">
         <!-- Fixed Sidebar (desktop) -->
         <div class="hidden lg:block fixed top-20 left-6 w-72 h-fit z-40 mt-4">
@@ -137,7 +149,7 @@ function onAddToCart(product: Product) {
         </div>
 
         <!-- Vertical Separator Line -->
-        <div class="hidden lg:block fixed left-[22rem] top-20 bottom-0 w-px bg-slate-200 z-30"></div>
+        <div class="hidden lg:block fixed left-88 top-20 bottom-0 w-px bg-slate-200 z-30"></div>
 
         <!-- Main Content -->
         <div class="flex-1 min-w-0 lg:ml-80">

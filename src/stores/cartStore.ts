@@ -4,18 +4,26 @@ import type { Product } from '../types/product'
 import type { CartItem } from '../types/cart'
 
 const STORAGE_KEY = 'shopnet_cart_v1'
+const STORAGE_VERSION = "v1";
+const STORAGE_VERSION_KEY = "shopnet_cart_version";
+
+function loadFromStorage(): CartItem[] {
+  try {
+    const version = localStorage.getItem(STORAGE_VERSION_KEY);
+    if (version !== STORAGE_VERSION) {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.setItem(STORAGE_VERSION_KEY, STORAGE_VERSION);
+      return [];
+    }
+    const raw = localStorage.getItem(STORAGE_KEY)
+    return raw ? (JSON.parse(raw) as CartItem[]) : []
+  } catch {
+    return []
+  }
+}
 
 export const useCartStore = defineStore('cart', () => {
   const items = ref<CartItem[]>(loadFromStorage())
-
-  function loadFromStorage(): CartItem[] {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY)
-      return raw ? (JSON.parse(raw) as CartItem[]) : []
-    } catch {
-      return []
-    }
-  }
 
   // auto-save to localStorage (persist across refresh)
   watch(
@@ -31,9 +39,10 @@ export const useCartStore = defineStore('cart', () => {
 
   const selectedItems = computed(() => items.value.filter(i => i.selected))
 
-  const FREE_SHIPPING_THRESHOLD = 50
-  const progress = computed(() => Math.min(100, (subtotal.value / FREE_SHIPPING_THRESHOLD) * 100))
-  const remainingForFreeShipping = computed(() => Math.max(0, FREE_SHIPPING_THRESHOLD - subtotal.value))
+  const FREE_SHIPPING_THRESHOLD_USD = 200
+  const progress = computed(() => Math.min(100, (subtotal.value / FREE_SHIPPING_THRESHOLD_USD) * 100))
+  const remainingForFreeShipping = computed(() => Math.max(0, FREE_SHIPPING_THRESHOLD_USD - subtotal.value))
+  const shippingFeeUSD = computed(() => (progress.value >= 100 ? 0 : 15))
 
   function formatMoney(n: number) {
     return `LKR ${(n * 300).toLocaleString()}`
@@ -87,5 +96,5 @@ export const useCartStore = defineStore('cart', () => {
     remove(productId)
   }
 
-  return { items, count, subtotal, selectedItems, progress, remainingForFreeShipping, formatMoney, add, remove, clear, setQuantity, inc, dec, toggleSelection, toggleAll, updateQuantity, removeItem }
+  return { items, count, subtotal, selectedItems, progress, remainingForFreeShipping, shippingFeeUSD, formatMoney, add, remove, clear, setQuantity, inc, dec, toggleSelection, toggleAll, updateQuantity, removeItem }
 })

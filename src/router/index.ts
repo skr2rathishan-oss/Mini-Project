@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import { useAuthStore } from "../stores/auth";
 
 // Pages
 import Home from "../pages/Home.vue";
@@ -43,6 +44,13 @@ const router = createRouter({
 
 
 // 🛡 Route guard for protected pages
+router.beforeEach((to) => {
+  const auth = useAuthStore();
+  const protectedRoutes = ["checkout", "profile"];
+  if (protectedRoutes.includes(String(to.name)) && !auth.isLoggedIn) {
+    return { name: "auth" };
+  }
+});
 
 
 export default router;

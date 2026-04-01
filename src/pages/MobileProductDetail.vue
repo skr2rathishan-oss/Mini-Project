@@ -135,5 +135,3 @@ watch(() => route.params.id, (newId) => {
   -webkit-box-orient: vertical;
 }
 </style>
-<script setup lang="ts">    
-</script>

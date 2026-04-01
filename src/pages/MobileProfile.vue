@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '../stores/auth'
 import ThemeToggle from '../components/Profile/ThemeToggle.vue'
@@ -7,10 +7,11 @@ import ThemeToggle from '../components/Profile/ThemeToggle.vue'
 const router = useRouter()
 const auth = useAuthStore()
 
-// Redirect to auth if not logged in
-if (!auth.isLoggedIn) {
-  router.push('/auth')
-}
+onMounted(() => {
+  if (!auth.isLoggedIn) {
+    router.push('/auth');
+  }
+});
 
 // Compute user initials for avatar
 const userInitials = computed(() => {
