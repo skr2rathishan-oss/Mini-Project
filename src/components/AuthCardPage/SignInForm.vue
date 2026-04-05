@@ -20,8 +20,7 @@ async function submit() {
   loading.value = true;
 
   try {
-    // Demo sign-in: use login as email for now
-    auth.signIn(login.value, password.value);
+    await auth.signIn(login.value, password.value);
 
     // Redirect after login (if you added redirectAfterLogin in store)
     // If not using redirectAfterLogin, just go home.
@@ -39,11 +38,11 @@ async function submit() {
   <form class="space-y-4" @submit.prevent="submit">
     <!-- Login Input -->
     <div>
-      <label class="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Login</label>
+      <label class="block text-[11px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-2">Username</label>
       <input
         v-model="login"
         type="text"
-        placeholder="Email or phone number"
+        placeholder="Enter your username"
         class="w-full bg-gray-100/80 dark:bg-slate-800 dark:text-slate-200 border-none rounded-xl py-4 px-4 text-sm focus:ring-2 focus:ring-teal-500/20 outline-none transition-all placeholder:text-gray-400 dark:placeholder:text-gray-600 font-medium"
       />
     </div>
@@ -138,6 +137,21 @@ async function submit() {
       >
         Forgot password?
       </button>
+    </div>
+
+    <!-- Valid Test Credentials Hint -->
+    <div class="p-3 bg-teal-50 dark:bg-teal-900/30 border border-teal-100 dark:border-teal-800 rounded-lg text-xs mt-2 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-1 h-full bg-teal-500"></div>
+      <p class="font-bold text-teal-800 dark:text-teal-300 mb-1 flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        Valid Test Credentials
+      </p>
+      <div class="flex items-center gap-4 mt-1.5">
+        <p class="text-teal-700 dark:text-teal-400">User: <strong class="font-mono bg-white dark:bg-slate-800 px-1 py-0.5 rounded shadow-sm border border-slate-200 dark:border-slate-700 text-[11px]">emilys</strong></p>
+        <p class="text-teal-700 dark:text-teal-400">Pass: <strong class="font-mono bg-white dark:bg-slate-800 px-1 py-0.5 rounded shadow-sm border border-slate-200 dark:border-slate-700 text-[11px]">emilyspass</strong></p>
+      </div>
     </div>
 
     <!-- Sign In Button -->

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from "vue";
 import { useUiStore } from "../../types/ui";
+import { useAuthStore } from "../../stores/auth";
 import ThemeToggle from "./ThemeToggle.vue";
 import { useRouter } from "vue-router";
 
 const ui = useUiStore();
+const auth = useAuthStore();
 const router = useRouter();
 const menuRef = ref<HTMLElement | null>(null);
 
@@ -15,6 +17,12 @@ function close() {
 function go(path: string) {
   close();
   router.push(path);
+}
+
+function handleLogout() {
+  auth.signOut();
+  close();
+  router.push('/');
 }
 
 function onKeydown(e: KeyboardEvent) {
@@ -48,18 +56,29 @@ onUnmounted(() => {
       style="top: 100%; margin-top: 8px;"
     >
       <div class="px-3 py-2">
-        <p class="text-sm font-black text-slate-900 dark:text-white">Account</p>
-        <p class="text-xs text-slate-400 dark:text-white">Manage your profile & orders</p>
+        <p class="text-sm font-black text-slate-900 dark:text-white">
+          {{ auth.isLoggedIn && auth.user ? `${auth.user.firstName} ${auth.user.lastName}` : 'Account' }}
+        </p>
+        <p class="text-xs text-slate-400 dark:text-white">
+          {{ auth.isLoggedIn && auth.user ? auth.user.email : 'Login to access your profile' }}
+        </p>
       </div>
 
       <div class="h-px bg-slate-100 dark:bg-slate-700 my-2"></div>
 
-      <button class="menuItem" @click="go('/auth')">My Profile</button>
+      <button class="menuItem" @click="go(auth.isLoggedIn ? '/profile' : '/auth')">
+        {{ auth.isLoggedIn ? 'Profile' : 'Login' }}
+      </button>
+
       <button class="menuItem" @click="go('/orders')">Orders</button>
       <button class="menuItem" @click="go('/wishlist')">Wishlist</button>
       <button class="menuItem" @click="go('/settings')">Settings</button> 
 
       <div class="h-px bg-slate-100 dark:bg-slate-700 my-2"></div>
+      
+      <button v-if="auth.isLoggedIn" class="menuItem text-red-600 dark:text-red-400" @click="handleLogout">
+        Logout
+      </button>
 
       <ThemeToggle />
     </div>
