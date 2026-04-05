@@ -15,9 +15,10 @@ onMounted(() => {
 
 // Compute user initials for avatar
 const userInitials = computed(() => {
-  if (!auth.user || !auth.user.name) return 'AB'
-  const nameArray = auth.user.name.split(' ')
-  return (nameArray[0]?.[0] || 'A') + (nameArray[1]?.[0] || 'B')
+  if (!auth.user) return 'AB'
+  const first = auth.user.firstName?.[0] || 'A'
+  const last = auth.user.lastName?.[0] || 'B'
+  return first + last
 })
 
 // Profile menu items
@@ -60,7 +61,7 @@ function handleLogout() {
         <!-- User Info -->
         <div>
           <h2 class="text-lg lg:text-xl font-bold text-slate-900 mt-4 mb-1">
-            {{ auth.user?.name }}
+            {{ auth.user ? `${auth.user.firstName} ${auth.user.lastName}` : 'Guest User' }}
           </h2>
           <p class="text-sm lg:text-base text-slate-500 font-medium">
             {{ auth.user?.email }}
